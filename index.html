@@ -409,6 +409,45 @@
       color: var(--text);
     }
 
+    /* View Toggle */
+    .view-toggle {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .view-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--muted);
+    }
+
+    .view-btn:hover {
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .view-btn.active {
+      background: rgba(129, 140, 248, 0.15);
+      color: var(--accent);
+    }
+
+    .view-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
     .count {
       margin-left: auto;
       font-size: 13px;
@@ -581,6 +620,142 @@
 
     .api-card:hover .fields code {
       border-color: var(--border-hover);
+    }
+
+    /* List View */
+    .grid.list-view {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .grid.list-view .api-card {
+      min-height: auto;
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1fr 1.5fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    @media (max-width: 1100px) {
+      .grid.list-view .api-card {
+        grid-template-columns: 1.5fr 1fr 1fr auto;
+      }
+      .grid.list-view .api-card .fields {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid.list-view .api-card {
+        grid-template-columns: 1fr auto;
+      }
+      .grid.list-view .api-card .meta,
+      .grid.list-view .api-card .fields,
+      .grid.list-view .api-card .foot {
+        display: none;
+      }
+    }
+
+    .grid.list-view .api-card .api-top {
+      margin-bottom: 0;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .grid.list-view .api-card .api-top > div:last-child {
+      display: none;
+    }
+
+    .grid.list-view .api-card .api-title {
+      font-size: 14px;
+    }
+
+    .grid.list-view .api-card .api-sub {
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .grid.list-view .api-card .meta {
+      margin: 0;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .grid.list-view .api-card .meta .tag {
+      font-size: 10px;
+      padding: 4px 8px;
+    }
+
+    .grid.list-view .api-card .fields {
+      margin: 0;
+    }
+
+    .grid.list-view .api-card .fields .fields-label {
+      display: none;
+    }
+
+    .grid.list-view .api-card .fields code {
+      font-size: 10px;
+      padding: 3px 6px;
+      margin: 1px 2px 1px 0;
+    }
+
+    .grid.list-view .api-card .foot {
+      margin: 0;
+      padding: 0;
+      border: none;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .grid.list-view .api-card .role {
+      font-size: 11px;
+      text-align: right;
+    }
+
+    .grid.list-view .api-card .btn {
+      font-size: 11px;
+      padding: 6px 10px;
+    }
+
+    /* List header (optional table header style) */
+    .list-header {
+      display: none;
+      padding: 12px 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .grid.list-view + .list-header,
+    .list-header.visible {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1fr 1.5fr auto;
+      gap: 16px;
+    }
+
+    @media (max-width: 1100px) {
+      .list-header.visible {
+        grid-template-columns: 1.5fr 1fr 1fr auto;
+      }
+      .list-header .lh-fields {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .list-header.visible {
+        display: none;
+      }
     }
 
     .foot {
@@ -860,8 +1035,36 @@
         <input id="q" type="text" placeholder="Search data sources, categories, fields…" autocomplete="off" />
       </div>
       <div class="chips" id="chips"></div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="viewCards" title="Card view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </button>
+        <button class="view-btn" id="viewList" title="List view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <circle cx="4" cy="6" r="1.5" fill="currentColor"/>
+            <circle cx="4" cy="12" r="1.5" fill="currentColor"/>
+            <circle cx="4" cy="18" r="1.5" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
       <div class="count" id="count"></div>
     </section>
+
+    <div class="list-header" id="listHeader">
+      <span>Source / Type</span>
+      <span>Coverage / Mode</span>
+      <span class="lh-fields">Fields</span>
+      <span>Benchmark Role</span>
+      <span></span>
+    </div>
 
     <section class="grid" id="grid" aria-label="Data cards"></section>
 
@@ -1131,6 +1334,17 @@
         data_type: "Workforce Attributes",
         example_fields: ["Profile URL", "LinkedIn ID", "Skills", "Certifications", "Location", "Seniority"],
         benchmark_role: "Skills & seniority inference"
+      },
+      {
+        id: "linkedin-posts",
+        source: "LinkedIn",
+        subcategory: "Posts & Content",
+        category: "Skills & Capabilities",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "Social Content",
+        example_fields: ["Post ID", "User ID", "Post Text", "Headline", "Hashtags", "Date Posted", "Engagement", "Likes"],
+        benchmark_role: "Skills trends & thought leadership signals"
       },
       // ============================================
       // B. JOB LISTINGS & JOB POSTING APIs
@@ -1448,6 +1662,17 @@
         example_fields: ["Role", "Hourly Rate", "Region", "Availability", "Seniority"],
         benchmark_role: "Gig economy pricing"
       },
+      {
+        id: "brightdata-salary",
+        source: "Bright Data",
+        subcategory: "Aggregated Salary Data",
+        category: "Pay, Rates & Economics",
+        delivery_mode: "Dataset API",
+        coverage: "Global",
+        data_type: "Compensation",
+        example_fields: ["Pay Range", "Pay Median", "Pay Currency", "Pay Type", "Job Title", "Location", "Company"],
+        benchmark_role: "Cross-platform salary aggregation (LinkedIn, Indeed, Glassdoor)"
+      },
       // ============================================
       // D. SKILLS, JOB CONTENT & PROFILE ENRICHMENT
       // ============================================
@@ -1709,6 +1934,130 @@
         data_type: "Company Registry",
         example_fields: ["Legal Name", "Jurisdiction", "Company Number", "Directors", "Status"],
         benchmark_role: "Company identity validation"
+      },
+      // ============================================
+      // ADDITIONAL BRIGHT DATA & COMPANY INTELLIGENCE
+      // ============================================
+      {
+        id: "brightdata-salary",
+        source: "Bright Data",
+        subcategory: "Aggregated Salary Data",
+        category: "Pay, Rates & Economics",
+        delivery_mode: "Dataset API",
+        coverage: "Global",
+        data_type: "Compensation",
+        example_fields: ["Pay Range", "Pay Median", "Pay Currency", "Pay Type", "Job Title", "Location", "Company", "Industry"],
+        benchmark_role: "Cross-platform salary aggregation"
+      },
+      {
+        id: "brightdata-jobs",
+        source: "Bright Data",
+        subcategory: "Jobs Dataset",
+        category: "Job Demand",
+        delivery_mode: "Dataset API",
+        coverage: "Global",
+        data_type: "Job Listings",
+        example_fields: ["Job Title", "Company", "Location", "Salary Range", "Posted Date", "Remote/On-site", "Description", "Benefits"],
+        benchmark_role: "Aggregated job market intelligence"
+      },
+      {
+        id: "brightdata-employee",
+        source: "Bright Data",
+        subcategory: "Employee Dataset",
+        category: "Workforce Supply",
+        delivery_mode: "Dataset API",
+        coverage: "Global",
+        data_type: "Workforce Profiles",
+        example_fields: ["Name", "Title", "Company", "Skills", "Experience", "Education", "Location", "Certifications"],
+        benchmark_role: "Workforce composition analysis"
+      },
+      {
+        id: "zoominfo",
+        source: "ZoomInfo",
+        subcategory: "Company Intelligence",
+        category: "Company Context",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "B2B Data",
+        example_fields: ["Revenue", "Employee Count", "Stock Symbol", "Industry", "Technologies", "HQ Location", "Funding"],
+        benchmark_role: "Company firmographics & technographics"
+      },
+      {
+        id: "pitchbook",
+        source: "PitchBook",
+        subcategory: "Investment Data",
+        category: "Company Context",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "Funding & Deals",
+        example_fields: ["Funding Rounds", "Investors", "Deal Type", "Valuation", "Employees", "Year Founded", "Status"],
+        benchmark_role: "Company growth & investment signals"
+      },
+      {
+        id: "g2-reviews",
+        source: "G2",
+        subcategory: "Software Reviews",
+        category: "Company Context",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "Product Reviews",
+        example_fields: ["Product Name", "Rating", "Reviewer Position", "Company Size", "Pros/Cons", "Use Case"],
+        benchmark_role: "Tech stack & vendor intelligence"
+      },
+      {
+        id: "xing",
+        source: "Xing",
+        subcategory: "Professional Profiles",
+        category: "Workforce Supply",
+        delivery_mode: "Dataset",
+        coverage: "DACH (Germany, Austria, Switzerland)",
+        data_type: "Professional Profiles",
+        example_fields: ["Name", "Experience", "Education", "Languages", "Skills", "Industry", "Company"],
+        benchmark_role: "European talent intelligence"
+      },
+      {
+        id: "indeed-companies",
+        source: "Indeed",
+        subcategory: "Company Profiles",
+        category: "Company Context",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "Employer Data",
+        example_fields: ["Company Name", "Work Happiness Score", "Company Rating", "Industry", "Size", "Reviews", "Jobs"],
+        benchmark_role: "Employer attractiveness metrics"
+      },
+      {
+        id: "moodys-supplier-risk",
+        source: "Moody's",
+        subcategory: "Supplier Risk Intelligence",
+        category: "Company Context",
+        delivery_mode: "REST API / MCP",
+        coverage: "Global",
+        data_type: "Risk Assessment",
+        example_fields: ["Risk Score", "Financial Health", "ESG Rating", "Credit Rating", "Supply Chain Risk", "Compliance Status", "Industry Risk"],
+        benchmark_role: "Supplier & third-party risk assessment"
+      },
+      {
+        id: "trustpilot",
+        source: "Trustpilot",
+        subcategory: "Business Reviews",
+        category: "Company Context",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "Customer Reviews",
+        example_fields: ["Company Name", "Rating", "Review Count", "Verified Reviews", "Review Date", "Response Rate"],
+        benchmark_role: "Employer & brand reputation"
+      },
+      {
+        id: "owler",
+        source: "Owler",
+        subcategory: "Company Intelligence",
+        category: "Company Context",
+        delivery_mode: "Dataset / API",
+        coverage: "Global",
+        data_type: "Competitive Intel",
+        example_fields: ["Company ID", "Revenue", "Employee Count", "Industry Sectors", "Competitors", "News", "Founded"],
+        benchmark_role: "Competitive landscape mapping"
       }
     ];
 
@@ -1721,8 +2070,41 @@
 
     let state = {
       q: "",
-      category: "All"
+      category: "All",
+      view: "cards" // "cards" or "list"
     };
+
+    // View toggle handling
+    const viewCardsBtn = document.getElementById('viewCards');
+    const viewListBtn = document.getElementById('viewList');
+    const listHeader = document.getElementById('listHeader');
+
+    function setView(view) {
+      state.view = view;
+      
+      if (view === 'cards') {
+        elGrid.classList.remove('list-view');
+        listHeader.classList.remove('visible');
+        viewCardsBtn.classList.add('active');
+        viewListBtn.classList.remove('active');
+      } else {
+        elGrid.classList.add('list-view');
+        listHeader.classList.add('visible');
+        viewCardsBtn.classList.remove('active');
+        viewListBtn.classList.add('active');
+      }
+      
+      localStorage.setItem('triangulate-view', view);
+    }
+
+    viewCardsBtn.addEventListener('click', () => setView('cards'));
+    viewListBtn.addEventListener('click', () => setView('list'));
+
+    // Initialize view from localStorage
+    const savedView = localStorage.getItem('triangulate-view');
+    if (savedView) {
+      setView(savedView);
+    }
 
     // Theme handling
     function initTheme() {
