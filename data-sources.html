@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Data Sources | triangulate.dev — workforce data platform</title>
-  <meta name="description" content="triangulate.dev â€” comprehensive workforce data from Deployed covering industry classifications, fulfillment channels, business verbs, and seniority levels." />
+  <title>Data Sources | triangulate.dev</title>
+  <meta name="description" content="triangulate.dev — comprehensive workforce data from Deployed covering industry classifications, fulfillment channels, business verbs, and seniority levels." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -163,6 +163,34 @@
     [data-theme="light"] .sun-icon { display: block; }
     [data-theme="light"] .moon-icon { display: none; }
 
+    /* Back to Platform Button */
+    .btn-back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-back-home:hover {
+      border-color: var(--border-hover);
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .btn-back-home svg {
+      width: 16px;
+      height: 16px;
+    }
+
     /* Early Adopter Button */
     .early-adopter-btn {
       display: inline-flex;
@@ -209,34 +237,6 @@
       height: 18px;
       position: relative;
       z-index: 1;
-    }
-
-    /* Back to Home Button */
-    .btn-back-home {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-
-    .btn-back-home:hover {
-      border-color: var(--border-hover);
-      color: var(--text);
-      background: var(--panel2);
-    }
-
-    .btn-back-home svg {
-      width: 16px;
-      height: 16px;
     }
 
     /* Hero Section */
@@ -435,6 +435,88 @@
       border-color: var(--accent);
       background: rgba(129, 140, 248, 0.15);
       color: var(--text);
+    }
+
+    /* Direction Toggle */
+    .direction-toggle {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .direction-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: inherit;
+    }
+
+    .direction-btn:hover {
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .direction-btn.active {
+      background: rgba(129, 140, 248, 0.15);
+      color: var(--accent);
+    }
+
+    .direction-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .direction-btn.input-btn.active {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22c55e;
+    }
+
+    .direction-btn.output-btn.active {
+      background: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+    }
+
+    /* Direction indicator on cards */
+    .direction-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 12px;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .direction-indicator.input {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .direction-indicator.output {
+      background: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+
+    .direction-indicator svg {
+      width: 12px;
+      height: 12px;
     }
 
     /* View Toggle */
@@ -1003,7 +1085,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-          <span>Back to Platform</span>
+          Back to Platform
         </a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1038,7 +1120,7 @@
           Access structured workforce intelligence including GICS industry classifications, fulfillment channel taxonomies, business action verbs, seniority levels, and global labour cost indicators from ILO and OECD.
         </p>
         <div class="source-badge">
-          <strong>Source:</strong> Deployed â€” Enterprise Workforce Intelligence
+          <strong>Source:</strong> Deployed — Enterprise Workforce Intelligence
         </div>
       </div>
 
@@ -1066,7 +1148,24 @@
           <circle cx="11" cy="11" r="8"/>
           <path d="M21 21l-4.35-4.35"/>
         </svg>
-        <input id="q" type="text" placeholder="Search data sources, categories, fieldsâ€¦" autocomplete="off" />
+        <input id="q" type="text" placeholder="Search data sources, categories, fields…" autocomplete="off" />
+      </div>
+      <div class="direction-toggle">
+        <button class="direction-btn active" id="dirAll" title="All sources">
+          All
+        </button>
+        <button class="direction-btn input-btn" id="dirInputs" title="Input sources">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3v18M5 10l7-7 7 7"/>
+          </svg>
+          Inputs
+        </button>
+        <button class="direction-btn output-btn" id="dirOutputs" title="Output systems">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3v18M5 14l7 7 7-7"/>
+          </svg>
+          Outputs
+        </button>
       </div>
       <div class="chips" id="chips"></div>
       <div class="view-toggle">
@@ -1103,7 +1202,7 @@
     <section class="grid" id="grid" aria-label="Data cards"></section>
 
     <footer>
-      <div>Â© <span id="year"></span> triangulate.dev â€” workforce data platform powered by Deployed</div>
+      <div>© <span id="year"></span> triangulate.dev — workforce data platform powered by Deployed</div>
       <div class="footer-links">
         <a href="index.html">Back to Platform</a>
         <a href="#api-list">Back to list</a>
@@ -1147,6 +1246,7 @@
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Energy", "Materials", "Industrials", "Consumer Discretionary", "Consumer Staples", "Health Care", "Financials", "Information Technology", "Communication Services", "Utilities", "Real Estate"],
+        data_direction: "input",
         benchmark_role: "11 GICS Sectors for company classification"
       },
       {
@@ -1158,6 +1258,7 @@
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Energy Equipment & Services", "Banks", "Software & Services", "Pharmaceuticals & Biotechnology", "Capital Goods", "Consumer Services", "Media & Entertainment", "Insurance", "Semiconductors"],
+        data_direction: "input",
         benchmark_role: "25 Industry Groups for sector breakdown"
       },
       {
@@ -1169,6 +1270,7 @@
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Oil & Gas Drilling", "Aerospace & Defense", "IT Consulting", "Biotechnology", "Asset Management", "Hotels & Restaurants", "Electric Utilities", "Semiconductors", "Wireless Telecom"],
+        data_direction: "input",
         benchmark_role: "74 Industries for detailed classification"
       },
       {
@@ -1180,6 +1282,7 @@
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Oil & Gas Exploration & Production", "Application Software", "Systems Software", "Diversified Banks", "Regional Banks", "Data Processing", "Internet Services", "Managed Health Care"],
+        data_direction: "input",
         benchmark_role: "163 Sub-Industries for granular mapping"
       },
       // ============================================
@@ -1194,6 +1297,7 @@
         coverage: "Global",
         data_type: "Channel Taxonomy",
         example_fields: ["Advisory Firm", "Management Consulting", "Domain Specific Consulting", "Professional Services", "Specialist Technology Providers", "Boutique Tech Firms", "Risk Consulting", "Cyber Consulting", "Legal Services", "Regulatory Management", "Marketing & PR", "Digital Agencies", "HR L&D", "Benchmarking"],
+        data_direction: "input",
         benchmark_role: "SoW-based service delivery channels"
       },
       {
@@ -1205,6 +1309,7 @@
         coverage: "Global",
         data_type: "Channel Taxonomy",
         example_fields: ["Business Process Outsourcer", "IT Service Providers", "IT Outsource Provider", "Offshore General", "Systems Integrators"],
+        data_direction: "input",
         benchmark_role: "Work Order-based resource channels"
       },
       {
@@ -1216,6 +1321,7 @@
         coverage: "Global",
         data_type: "Channel Taxonomy",
         example_fields: ["Internal Consulting Bench", "Full-time Permanent", "Part-time Permanent", "Secondment", "Fixed Term Employee", "Graduate", "Intern"],
+        data_direction: "input",
         benchmark_role: "Internal workforce categories"
       },
       {
@@ -1227,6 +1333,7 @@
         coverage: "Global",
         data_type: "Channel Taxonomy",
         example_fields: ["Contingent Labour Provider", "Managed Service Provider", "Direct Contractor", "Recruitment Firm", "RPO", "Expert Marketplaces", "Consulting Marketplaces", "Freelancers"],
+        data_direction: "input",
         benchmark_role: "Flexible workforce channels"
       },
       {
@@ -1238,6 +1345,7 @@
         coverage: "Global",
         data_type: "Channel Taxonomy",
         example_fields: ["Direct to AI Models"],
+        data_direction: "input",
         benchmark_role: "AI-based work fulfillment"
       },
       // ============================================
@@ -1252,6 +1360,7 @@
         coverage: "Universal",
         data_type: "Action Taxonomy",
         example_fields: ["advise", "align", "benchmark", "decide", "develop", "establish", "evaluate", "forecast", "govern", "guide", "lead", "partner", "plan", "position", "recommend", "strategize"],
+        data_direction: "input",
         benchmark_role: "Strategic business action classification"
       },
       {
@@ -1263,6 +1372,7 @@
         coverage: "Universal",
         data_type: "Action Taxonomy",
         example_fields: ["administer", "arrange", "build", "collect", "conduct", "coordinate", "deliver", "deploy", "execute", "implement", "integrate", "maintain", "manage", "monitor", "operate", "organize", "process", "produce", "run", "schedule"],
+        data_direction: "input",
         benchmark_role: "Operational business action classification"
       },
       {
@@ -1274,6 +1384,7 @@
         coverage: "Universal",
         data_type: "Action Taxonomy",
         example_fields: ["analyze", "assess", "audit", "calculate", "classify", "compare", "detect", "diagnose", "examine", "identify", "inspect", "interpret", "investigate", "measure", "model", "quantify", "research", "review", "study", "survey", "test", "validate", "verify"],
+        data_direction: "input",
         benchmark_role: "Analytical business action classification"
       },
       {
@@ -1285,6 +1396,7 @@
         coverage: "Universal",
         data_type: "Action Taxonomy",
         example_fields: ["compose", "conceive", "construct", "create", "customize", "design", "discover", "draft", "engineer", "enhance", "explore", "generate", "invent", "iterate", "prototype", "refine", "remodel"],
+        data_direction: "input",
         benchmark_role: "Creative business action classification"
       },
       {
@@ -1296,6 +1408,7 @@
         coverage: "Universal",
         data_type: "Action Taxonomy",
         example_fields: ["change", "consolidate", "convert", "modify", "overhaul", "realign", "redevelop", "reduce", "reorganize", "replace", "restore", "restructure", "streamline", "transform", "transition", "upgrade"],
+        data_direction: "input",
         benchmark_role: "Transformation action classification"
       },
       // ============================================
@@ -1310,6 +1423,7 @@
         coverage: "Global",
         data_type: "Seniority Taxonomy",
         example_fields: ["Entry Level", "Junior", "Mid-Level", "Senior", "Lead", "Principal", "Director", "VP", "C-Suite", "Board"],
+        data_direction: "input",
         benchmark_role: "Standardized seniority level mapping"
       },
       // ============================================
@@ -1324,6 +1438,7 @@
         coverage: "Global",
         data_type: "Identity & Career",
         example_fields: ["Profile ID", "Name", "City", "Country", "Headline", "Position", "About", "Posts", "Current Company", "Past Roles", "Connections"],
+        data_direction: "input",
         benchmark_role: "Workforce supply baseline"
       },
       {
@@ -1335,6 +1450,7 @@
         coverage: "Global",
         data_type: "Employer Metadata",
         example_fields: ["Company ID", "Name", "Industry", "Locations", "Followers", "Employee Count", "About", "Specialties"],
+        data_direction: "input",
         benchmark_role: "Employer anchor & deduplication"
       },
       {
@@ -1346,6 +1462,7 @@
         coverage: "Global",
         data_type: "Job Demand",
         example_fields: ["Job ID", "Title", "Company", "Location", "Seniority", "Employment Type", "Summary"],
+        data_direction: "input",
         benchmark_role: "Live demand signal"
       },
       {
@@ -1357,6 +1474,7 @@
         coverage: "Global",
         data_type: "Normalised Records",
         example_fields: ["Canonical ID", "Name", "Locations", "Headcount", "Followers", "Description"],
+        data_direction: "input",
         benchmark_role: "Company deduplication layer"
       },
       {
@@ -1368,6 +1486,7 @@
         coverage: "Global",
         data_type: "Workforce Attributes",
         example_fields: ["Profile URL", "LinkedIn ID", "Skills", "Certifications", "Location", "Seniority"],
+        data_direction: "input",
         benchmark_role: "Skills & seniority inference"
       },
       {
@@ -1379,6 +1498,7 @@
         coverage: "Global",
         data_type: "Social Content",
         example_fields: ["Post ID", "User ID", "Post Text", "Headline", "Hashtags", "Date Posted", "Engagement", "Likes"],
+        data_direction: "input",
         benchmark_role: "Skills trends & thought leadership signals"
       },
       // ============================================
@@ -1394,6 +1514,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Job ID", "Title", "Company", "Location", "Description", "Source", "Posted Date"],
+        data_direction: "input",
         benchmark_role: "Primary ingestion backbone"
       },
       {
@@ -1405,6 +1526,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Title", "Company", "Location", "Source", "Summary"],
+        data_direction: "input",
         benchmark_role: "Cross-platform coverage"
       },
       {
@@ -1416,6 +1538,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Title", "Company", "Location", "Description", "URL"],
+        data_direction: "input",
         benchmark_role: "Secondary aggregation"
       },
       {
@@ -1427,6 +1550,7 @@
         coverage: "Global",
         data_type: "Job Listings",
         example_fields: ["Job Title", "Employer", "Country", "Posting Date"],
+        data_direction: "input",
         benchmark_role: "Macro demand baseline"
       },
       {
@@ -1438,6 +1562,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Job Title", "Company", "Location", "Description"],
+        data_direction: "input",
         benchmark_role: "Alternative aggregation"
       },
       {
@@ -1449,6 +1574,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Job Title", "Company", "Location", "Industry"],
+        data_direction: "input",
         benchmark_role: "Historical density"
       },
       {
@@ -1460,6 +1586,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Job ID", "Company", "Title", "Location"],
+        data_direction: "input",
         benchmark_role: "Streaming-style feed"
       },
       {
@@ -1471,6 +1598,7 @@
         coverage: "Multi-platform",
         data_type: "Job Listings",
         example_fields: ["Title", "Company", "Location", "Summary"],
+        data_direction: "input",
         benchmark_role: "Supplementary demand data"
       },
       // Platform-Specific Job Feeds
@@ -1483,6 +1611,7 @@
         coverage: "Global",
         data_type: "Job Postings",
         example_fields: ["Job Title", "Company", "Location", "Seniority", "Salary"],
+        data_direction: "input",
         benchmark_role: "White-collar demand"
       },
       {
@@ -1494,6 +1623,7 @@
         coverage: "Global",
         data_type: "Job Listings",
         example_fields: ["Job ID", "Title", "Company", "Location"],
+        data_direction: "input",
         benchmark_role: "LinkedIn backfill"
       },
       {
@@ -1505,6 +1635,7 @@
         coverage: "Global",
         data_type: "Job Demand",
         example_fields: ["Job ID", "Title", "Company", "Location", "Description"],
+        data_direction: "input",
         benchmark_role: "High-volume demand"
       },
       {
@@ -1516,6 +1647,7 @@
         coverage: "Global",
         data_type: "Job Listings",
         example_fields: ["Title", "Company", "Salary", "Description", "URL"],
+        data_direction: "input",
         benchmark_role: "Volume expansion"
       },
       {
@@ -1527,6 +1659,7 @@
         coverage: "Global",
         data_type: "Job Listings",
         example_fields: ["Job Title", "Company", "Location"],
+        data_direction: "input",
         benchmark_role: "Legacy coverage"
       },
       {
@@ -1538,6 +1671,7 @@
         coverage: "Enterprise employers",
         data_type: "Enterprise Jobs",
         example_fields: ["Requisition ID", "Job Title", "Location", "Description"],
+        data_direction: "input",
         benchmark_role: "Enterprise ATS demand"
       },
       {
@@ -1549,6 +1683,7 @@
         coverage: "Global",
         data_type: "Early Career Jobs",
         example_fields: ["Title", "Company", "Internship Type", "Location"],
+        data_direction: "input",
         benchmark_role: "Early-career benchmark"
       },
       {
@@ -1560,6 +1695,7 @@
         coverage: "Global",
         data_type: "Remote Job Listings",
         example_fields: ["Job Title", "Company", "Remote Type", "Tech Stack"],
+        data_direction: "input",
         benchmark_role: "Remote-work benchmark"
       },
       {
@@ -1571,6 +1707,7 @@
         coverage: "NYC",
         data_type: "Job Listings",
         example_fields: ["Title", "Department", "Category", "Location"],
+        data_direction: "input",
         benchmark_role: "Public sector reference"
       },
       {
@@ -1582,6 +1719,7 @@
         coverage: "UK",
         data_type: "Job Listings",
         example_fields: ["Title", "Employer", "Salary", "Location"],
+        data_direction: "input",
         benchmark_role: "UK labour market"
       },
       // ============================================
@@ -1596,6 +1734,7 @@
         coverage: "Global",
         data_type: "Compensation & Reviews",
         example_fields: ["Salary Range", "Job Title", "Company", "Ratings", "Reviews"],
+        data_direction: "input",
         benchmark_role: "Pay realism anchor"
       },
       {
@@ -1607,6 +1746,7 @@
         coverage: "Global",
         data_type: "Salary Estimates",
         example_fields: ["Job Title", "Location", "Salary Range", "Company"],
+        data_direction: "input",
         benchmark_role: "Role-based pay bands"
       },
       {
@@ -1618,6 +1758,7 @@
         coverage: "Global",
         data_type: "Compensation",
         example_fields: ["Job Title", "Country", "Median Salary"],
+        data_direction: "input",
         benchmark_role: "Quick salary lookup"
       },
       {
@@ -1629,6 +1770,7 @@
         coverage: "Regional",
         data_type: "Geo-economic Data",
         example_fields: ["Region", "Occupation", "Income Bands"],
+        data_direction: "input",
         benchmark_role: "Location context"
       },
       {
@@ -1640,6 +1782,7 @@
         coverage: "Global",
         data_type: "Salary Signals",
         example_fields: ["Role", "Location", "Salary Estimates"],
+        data_direction: "input",
         benchmark_role: "Inline salary hints"
       },
       {
@@ -1651,6 +1794,7 @@
         coverage: "Global (190+ countries)",
         data_type: "Economic Indicators",
         example_fields: ["Mean Nominal Hourly Labour Cost", "Labour Cost by Economic Activity", "Exchange Rates (LCU/USD)", "PPP Conversion Factors", "Labour Cost Index"],
+        data_direction: "input",
         benchmark_role: "International labour cost benchmarking"
       },
       {
@@ -1662,6 +1806,7 @@
         coverage: "OECD Countries (38 members)",
         data_type: "Economic Indicators",
         example_fields: ["Unit Labour Costs", "Labour Productivity", "Labour Compensation per Hour", "Real Output", "Labour Income Share", "Total Labour Cost"],
+        data_direction: "input",
         benchmark_role: "Competitiveness and productivity analysis"
       },
       {
@@ -1673,6 +1818,7 @@
         coverage: "USA",
         data_type: "Wages & Projections",
         example_fields: ["Occupation", "Wage Percentiles", "Employment", "Growth Rate"],
+        data_direction: "input",
         benchmark_role: "US economic grounding"
       },
       {
@@ -1684,6 +1830,7 @@
         coverage: "EU",
         data_type: "Employment Data",
         example_fields: ["Occupation", "Region", "Employment Levels", "Wages"],
+        data_direction: "input",
         benchmark_role: "EU macro labour trends"
       },
       {
@@ -1695,6 +1842,7 @@
         coverage: "Global",
         data_type: "Hourly Rates",
         example_fields: ["Role", "Hourly Rate", "Region", "Availability", "Seniority"],
+        data_direction: "input",
         benchmark_role: "Gig economy pricing"
       },
       {
@@ -1706,6 +1854,7 @@
         coverage: "Global",
         data_type: "Compensation",
         example_fields: ["Pay Range", "Pay Median", "Pay Currency", "Pay Type", "Job Title", "Location", "Company"],
+        data_direction: "input",
         benchmark_role: "Cross-platform salary aggregation (LinkedIn, Indeed, Glassdoor)"
       },
       // ============================================
@@ -1720,6 +1869,7 @@
         coverage: "Global",
         data_type: "Skills",
         example_fields: ["Skill Name", "Category", "Seniority", "Frequency"],
+        data_direction: "input",
         benchmark_role: "Skill standardisation"
       },
       {
@@ -1731,6 +1881,7 @@
         coverage: "Global",
         data_type: "Skill Popularity",
         example_fields: ["Skill Name", "Rank", "Frequency"],
+        data_direction: "input",
         benchmark_role: "Skill demand index"
       },
       {
@@ -1742,6 +1893,7 @@
         coverage: "Global",
         data_type: "Parsed Skills",
         example_fields: ["Extracted Skills", "Confidence Score"],
+        data_direction: "input",
         benchmark_role: "Job description parsing"
       },
       {
@@ -1753,6 +1905,7 @@
         coverage: "Global",
         data_type: "Structured Skills",
         example_fields: ["Skill Entities", "Confidence Score"],
+        data_direction: "input",
         benchmark_role: "LLM-ready skill layer"
       },
       {
@@ -1764,6 +1917,7 @@
         coverage: "Global",
         data_type: "Skill Ontology",
         example_fields: ["Skill Name", "Related Skills", "Category"],
+        data_direction: "input",
         benchmark_role: "Skill ontology support"
       },
       {
@@ -1775,6 +1929,7 @@
         coverage: "Tech roles",
         data_type: "Skill Database",
         example_fields: ["Skill Name", "Stack Category"],
+        data_direction: "input",
         benchmark_role: "Tech stack benchmarks"
       },
       {
@@ -1786,6 +1941,7 @@
         coverage: "Global",
         data_type: "Skill-based Profiles",
         example_fields: ["Profile ID", "Skills", "Location", "Company"],
+        data_direction: "input",
         benchmark_role: "Supply-side matching"
       },
       {
@@ -1797,6 +1953,7 @@
         coverage: "Global",
         data_type: "Skill Evidence",
         example_fields: ["Repositories", "Languages", "Stars", "Contributions", "Activity"],
+        data_direction: "input",
         benchmark_role: "Real skill proof"
       },
       {
@@ -1808,6 +1965,7 @@
         coverage: "Global",
         data_type: "Skill Signals",
         example_fields: ["Tags", "Survey Results", "Salary Responses", "Developer Prefs"],
+        data_direction: "input",
         benchmark_role: "Skill demand validation"
       },
       // ============================================
@@ -1822,6 +1980,7 @@
         coverage: "Global",
         data_type: "Occupation Taxonomy",
         example_fields: ["Occupation Code", "Title", "Description"],
+        data_direction: "input",
         benchmark_role: "Global role standard"
       },
       {
@@ -1833,6 +1992,7 @@
         coverage: "USA",
         data_type: "Occupation & Skills",
         example_fields: ["SOC Code", "Tasks", "Skills", "Knowledge", "Tools"],
+        data_direction: "input",
         benchmark_role: "Skill-rich role model"
       },
       {
@@ -1844,6 +2004,7 @@
         coverage: "Europe",
         data_type: "Occupations & Skills",
         example_fields: ["Role", "Skills", "Qualifications"],
+        data_direction: "input",
         benchmark_role: "EU standard mapping"
       },
       {
@@ -1855,6 +2016,7 @@
         coverage: "UK",
         data_type: "Occupation Taxonomy",
         example_fields: ["SOC Code", "Job Title", "Group"],
+        data_direction: "input",
         benchmark_role: "UK role mapping"
       },
       {
@@ -1866,6 +2028,7 @@
         coverage: "Canada",
         data_type: "Occupation Taxonomy",
         example_fields: ["NOC Code", "Job Title", "Duties"],
+        data_direction: "input",
         benchmark_role: "CA role mapping"
       },
       {
@@ -1877,6 +2040,7 @@
         coverage: "ANZ",
         data_type: "Occupation Taxonomy",
         example_fields: ["Code", "Role Title", "Skill Level"],
+        data_direction: "input",
         benchmark_role: "ANZ role mapping"
       },
       {
@@ -1888,6 +2052,7 @@
         coverage: "India",
         data_type: "Occupation Taxonomy",
         example_fields: ["Occupation Code", "Title"],
+        data_direction: "input",
         benchmark_role: "India workforce map"
       },
       {
@@ -1899,6 +2064,7 @@
         coverage: "South Africa",
         data_type: "Occupation Taxonomy",
         example_fields: ["Occupation Framework", "Code", "Title"],
+        data_direction: "input",
         benchmark_role: "ZA classification"
       },
       {
@@ -1910,6 +2076,7 @@
         coverage: "Brazil",
         data_type: "Occupation Taxonomy",
         example_fields: ["Code", "Job Title"],
+        data_direction: "input",
         benchmark_role: "LATAM mapping"
       },
       {
@@ -1921,6 +2088,7 @@
         coverage: "Japan",
         data_type: "Occupation Taxonomy",
         example_fields: ["Occupation Codes", "Title"],
+        data_direction: "input",
         benchmark_role: "JP role mapping"
       },
       {
@@ -1932,6 +2100,7 @@
         coverage: "China",
         data_type: "Occupation Taxonomy",
         example_fields: ["Role Definitions", "Code"],
+        data_direction: "input",
         benchmark_role: "CN role reference"
       },
       {
@@ -1943,6 +2112,7 @@
         coverage: "Russia",
         data_type: "Occupation Taxonomy",
         example_fields: ["Occupation Codes", "Title"],
+        data_direction: "input",
         benchmark_role: "RU role reference"
       },
       // ============================================
@@ -1957,6 +2127,7 @@
         coverage: "Global",
         data_type: "Company Growth",
         example_fields: ["Funding Rounds", "Investors", "Headcount", "Industry", "HQ Location"],
+        data_direction: "input",
         benchmark_role: "Company momentum signal"
       },
       {
@@ -1968,6 +2139,7 @@
         coverage: "Global",
         data_type: "Company Registry",
         example_fields: ["Legal Name", "Jurisdiction", "Company Number", "Directors", "Status"],
+        data_direction: "input",
         benchmark_role: "Company identity validation"
       },
       // ============================================
@@ -1982,6 +2154,7 @@
         coverage: "Global",
         data_type: "Compensation",
         example_fields: ["Pay Range", "Pay Median", "Pay Currency", "Pay Type", "Job Title", "Location", "Company", "Industry"],
+        data_direction: "input",
         benchmark_role: "Cross-platform salary aggregation"
       },
       {
@@ -1993,6 +2166,7 @@
         coverage: "Global",
         data_type: "Job Listings",
         example_fields: ["Job Title", "Company", "Location", "Salary Range", "Posted Date", "Remote/On-site", "Description", "Benefits"],
+        data_direction: "input",
         benchmark_role: "Aggregated job market intelligence"
       },
       {
@@ -2004,6 +2178,7 @@
         coverage: "Global",
         data_type: "Workforce Profiles",
         example_fields: ["Name", "Title", "Company", "Skills", "Experience", "Education", "Location", "Certifications"],
+        data_direction: "input",
         benchmark_role: "Workforce composition analysis"
       },
       {
@@ -2015,6 +2190,7 @@
         coverage: "Global",
         data_type: "B2B Data",
         example_fields: ["Revenue", "Employee Count", "Stock Symbol", "Industry", "Technologies", "HQ Location", "Funding"],
+        data_direction: "input",
         benchmark_role: "Company firmographics & technographics"
       },
       {
@@ -2026,6 +2202,7 @@
         coverage: "Global",
         data_type: "Funding & Deals",
         example_fields: ["Funding Rounds", "Investors", "Deal Type", "Valuation", "Employees", "Year Founded", "Status"],
+        data_direction: "input",
         benchmark_role: "Company growth & investment signals"
       },
       {
@@ -2037,6 +2214,7 @@
         coverage: "Global",
         data_type: "Product Reviews",
         example_fields: ["Product Name", "Rating", "Reviewer Position", "Company Size", "Pros/Cons", "Use Case"],
+        data_direction: "input",
         benchmark_role: "Tech stack & vendor intelligence"
       },
       {
@@ -2048,6 +2226,7 @@
         coverage: "DACH (Germany, Austria, Switzerland)",
         data_type: "Professional Profiles",
         example_fields: ["Name", "Experience", "Education", "Languages", "Skills", "Industry", "Company"],
+        data_direction: "input",
         benchmark_role: "European talent intelligence"
       },
       {
@@ -2059,6 +2238,7 @@
         coverage: "Global",
         data_type: "Employer Data",
         example_fields: ["Company Name", "Work Happiness Score", "Company Rating", "Industry", "Size", "Reviews", "Jobs"],
+        data_direction: "input",
         benchmark_role: "Employer attractiveness metrics"
       },
       {
@@ -2070,6 +2250,7 @@
         coverage: "Global",
         data_type: "Risk Assessment",
         example_fields: ["Risk Score", "Financial Health", "ESG Rating", "Credit Rating", "Supply Chain Risk", "Compliance Status", "Industry Risk"],
+        data_direction: "input",
         benchmark_role: "Supplier & third-party risk assessment"
       },
       {
@@ -2081,6 +2262,7 @@
         coverage: "Global",
         data_type: "Customer Reviews",
         example_fields: ["Company Name", "Rating", "Review Count", "Verified Reviews", "Review Date", "Response Rate"],
+        data_direction: "input",
         benchmark_role: "Employer & brand reputation"
       },
       {
@@ -2092,11 +2274,468 @@
         coverage: "Global",
         data_type: "Competitive Intel",
         example_fields: ["Company ID", "Revenue", "Employee Count", "Industry Sectors", "Competitors", "News", "Founded"],
+        data_direction: "input",
         benchmark_role: "Competitive landscape mapping"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Contract Management
+      // ============================================
+      {
+        id: "icertis",
+        source: "Icertis",
+        subcategory: "Contract Lifecycle Management",
+        category: "Contract Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "CLM Platform",
+        example_fields: ["Contract ID", "Contract Type", "Counterparty", "Term Dates", "Value", "Clauses", "Obligations", "Status", "Audit Trail"],
+        data_direction: "output",
+        benchmark_role: "Legal & commercial system of record"
+      },
+      {
+        id: "ironclad",
+        source: "Ironclad",
+        subcategory: "Contract Lifecycle Management",
+        category: "Contract Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "CLM Platform",
+        example_fields: ["Contract ID", "Contract Type", "Counterparty", "Term Dates", "Value", "Clauses", "Obligations", "Status", "Audit Trail"],
+        data_direction: "output",
+        benchmark_role: "Legal & commercial system of record"
+      },
+      {
+        id: "agiloft",
+        source: "Agiloft",
+        subcategory: "Contract Lifecycle Management",
+        category: "Contract Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "CLM Platform",
+        example_fields: ["Contract ID", "Contract Type", "Counterparty", "Term Dates", "Value", "Clauses", "Obligations", "Status", "Audit Trail"],
+        data_direction: "output",
+        benchmark_role: "Legal & commercial system of record"
+      },
+      {
+        id: "sirion",
+        source: "Sirion",
+        subcategory: "Contract Lifecycle Management",
+        category: "Contract Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "CLM Platform",
+        example_fields: ["Contract ID", "Contract Type", "Counterparty", "Term Dates", "Value", "Clauses", "Obligations", "Status", "Audit Trail"],
+        data_direction: "output",
+        benchmark_role: "Legal & commercial system of record"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Document Signature
+      // ============================================
+      {
+        id: "docusign",
+        source: "DocuSign",
+        subcategory: "Electronic Signature",
+        category: "Document Signature",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "eSignature Platform",
+        example_fields: ["Envelope ID", "Document ID", "Signer", "Signing Order", "Status", "Timestamps", "Certificate", "Completed PDF"],
+        data_direction: "output",
+        benchmark_role: "Execution & evidence layer"
+      },
+      {
+        id: "adobe-sign",
+        source: "Adobe Acrobat Sign",
+        subcategory: "Electronic Signature",
+        category: "Document Signature",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "eSignature Platform",
+        example_fields: ["Envelope ID", "Document ID", "Signer", "Signing Order", "Status", "Timestamps", "Certificate", "Completed PDF"],
+        data_direction: "output",
+        benchmark_role: "Execution & evidence layer"
+      },
+      {
+        id: "dropbox-sign",
+        source: "Dropbox Sign",
+        subcategory: "Electronic Signature",
+        category: "Document Signature",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "eSignature Platform",
+        example_fields: ["Envelope ID", "Document ID", "Signer", "Signing Order", "Status", "Timestamps", "Certificate", "Completed PDF"],
+        data_direction: "output",
+        benchmark_role: "Execution & evidence layer"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Source to Pay
+      // ============================================
+      {
+        id: "coupa",
+        source: "Coupa",
+        subcategory: "Source to Pay Suite",
+        category: "Source to Pay",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "S2P Platform",
+        example_fields: ["Requisition ID", "Supplier ID", "Category", "PO ID", "Invoice ID", "Spend", "Approval Status", "Payment Status"],
+        data_direction: "output",
+        benchmark_role: "Transaction backbone"
+      },
+      {
+        id: "sap-ariba-s2p",
+        source: "SAP Ariba",
+        subcategory: "Source to Pay Suite",
+        category: "Source to Pay",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "S2P Platform",
+        example_fields: ["Requisition ID", "Supplier ID", "Category", "PO ID", "Invoice ID", "Spend", "Approval Status", "Payment Status"],
+        data_direction: "output",
+        benchmark_role: "Transaction backbone"
+      },
+      {
+        id: "ivalua",
+        source: "Ivalua",
+        subcategory: "Source to Pay Suite",
+        category: "Source to Pay",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "S2P Platform",
+        example_fields: ["Requisition ID", "Supplier ID", "Category", "PO ID", "Invoice ID", "Spend", "Approval Status", "Payment Status"],
+        data_direction: "output",
+        benchmark_role: "Transaction backbone"
+      },
+      {
+        id: "jaggaer",
+        source: "Jaggaer",
+        subcategory: "Source to Pay Suite",
+        category: "Source to Pay",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "S2P Platform",
+        example_fields: ["Requisition ID", "Supplier ID", "Category", "PO ID", "Invoice ID", "Spend", "Approval Status", "Payment Status"],
+        data_direction: "output",
+        benchmark_role: "Transaction backbone"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Purchase Orders
+      // ============================================
+      {
+        id: "sap-ariba-po",
+        source: "SAP Ariba",
+        subcategory: "Purchase Order Management",
+        category: "Purchase Orders",
+        delivery_mode: "Official API / cXML",
+        coverage: "Global",
+        data_type: "PO System",
+        example_fields: ["PO ID", "Line Items", "Qty", "Price", "Delivery Schedule", "Receipt Status", "Match Status", "Supplier Ack"],
+        data_direction: "output",
+        benchmark_role: "Financial commitment layer"
+      },
+      {
+        id: "oracle-procurement",
+        source: "Oracle Procurement",
+        subcategory: "Purchase Order Management",
+        category: "Purchase Orders",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "PO System",
+        example_fields: ["PO ID", "Line Items", "Qty", "Price", "Delivery Schedule", "Receipt Status", "Match Status", "Supplier Ack"],
+        data_direction: "output",
+        benchmark_role: "Financial commitment layer"
+      },
+      {
+        id: "dynamics-365-bc",
+        source: "Microsoft Dynamics 365 BC",
+        subcategory: "Purchase Order Management",
+        category: "Purchase Orders",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "PO System",
+        example_fields: ["PO ID", "Line Items", "Qty", "Price", "Delivery Schedule", "Receipt Status", "Match Status", "Supplier Ack"],
+        data_direction: "output",
+        benchmark_role: "Financial commitment layer"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Procurement Orchestration
+      // ============================================
+      {
+        id: "zip-procurement",
+        source: "Zip",
+        subcategory: "Procurement Intake & Orchestration",
+        category: "Procurement Orchestration",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "Intake Platform",
+        example_fields: ["Intake ID", "Requestor", "Category", "Estimated Value", "Routing Decision", "Target System", "Approval Status"],
+        data_direction: "output",
+        benchmark_role: "Decision & routing layer"
+      },
+      {
+        id: "oro-labs",
+        source: "Oro Labs",
+        subcategory: "Procurement Intake & Orchestration",
+        category: "Procurement Orchestration",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "Intake Platform",
+        example_fields: ["Intake ID", "Requestor", "Category", "Estimated Value", "Routing Decision", "Target System", "Approval Status"],
+        data_direction: "output",
+        benchmark_role: "Decision & routing layer"
+      },
+      {
+        id: "procure-ai",
+        source: "Procure AI",
+        subcategory: "Procurement Intake & Orchestration",
+        category: "Procurement Orchestration",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "Intake Platform",
+        example_fields: ["Intake ID", "Requestor", "Category", "Estimated Value", "Routing Decision", "Target System", "Approval Status"],
+        data_direction: "output",
+        benchmark_role: "Decision & routing layer"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Autonomous Sourcing
+      // ============================================
+      {
+        id: "globality",
+        source: "Globality",
+        subcategory: "AI-Powered Sourcing",
+        category: "Autonomous Sourcing",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "Sourcing Platform",
+        example_fields: ["Event ID", "Supplier List", "Bids", "Scores", "Award Recommendation", "Negotiation Logs"],
+        data_direction: "output",
+        benchmark_role: "Competitive sourcing engine"
+      },
+      {
+        id: "keelvar",
+        source: "Keelvar",
+        subcategory: "AI-Powered Sourcing",
+        category: "Autonomous Sourcing",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "Sourcing Platform",
+        example_fields: ["Event ID", "Supplier List", "Bids", "Scores", "Award Recommendation", "Negotiation Logs"],
+        data_direction: "output",
+        benchmark_role: "Competitive sourcing engine"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Vendor Management (VMS)
+      // ============================================
+      {
+        id: "beeline-vms",
+        source: "Beeline",
+        subcategory: "Vendor Management System",
+        category: "Vendor Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "VMS Platform",
+        example_fields: ["Req ID", "Worker ID", "Assignment", "Rate", "Timesheets", "Compliance Status", "SOW Tracking"],
+        data_direction: "output",
+        benchmark_role: "Contingent workforce SoR"
+      },
+      {
+        id: "sap-fieldglass",
+        source: "SAP Fieldglass",
+        subcategory: "Vendor Management System",
+        category: "Vendor Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "VMS Platform",
+        example_fields: ["Req ID", "Worker ID", "Assignment", "Rate", "Timesheets", "Compliance Status", "SOW Tracking"],
+        data_direction: "output",
+        benchmark_role: "Contingent workforce SoR"
+      },
+      {
+        id: "magnit-vms",
+        source: "Magnit",
+        subcategory: "Vendor Management System",
+        category: "Vendor Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "VMS Platform",
+        example_fields: ["Req ID", "Worker ID", "Assignment", "Rate", "Timesheets", "Compliance Status", "SOW Tracking"],
+        data_direction: "output",
+        benchmark_role: "Contingent workforce SoR"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - HRIS / HCM
+      // ============================================
+      {
+        id: "workday-hcm",
+        source: "Workday",
+        subcategory: "Human Capital Management",
+        category: "HRIS / HCM",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "HCM Platform",
+        example_fields: ["Worker ID", "Org Structure", "Job Code", "Compensation Band", "Manager", "Hire Date", "Termination Date"],
+        data_direction: "output",
+        benchmark_role: "Workforce system of record"
+      },
+      {
+        id: "sap-successfactors",
+        source: "SAP SuccessFactors",
+        subcategory: "Human Capital Management",
+        category: "HRIS / HCM",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "HCM Platform",
+        example_fields: ["Worker ID", "Org Structure", "Job Code", "Compensation Band", "Manager", "Hire Date", "Termination Date"],
+        data_direction: "output",
+        benchmark_role: "Workforce system of record"
+      },
+      {
+        id: "oracle-hcm",
+        source: "Oracle HCM Cloud",
+        subcategory: "Human Capital Management",
+        category: "HRIS / HCM",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "HCM Platform",
+        example_fields: ["Worker ID", "Org Structure", "Job Code", "Compensation Band", "Manager", "Hire Date", "Termination Date"],
+        data_direction: "output",
+        benchmark_role: "Workforce system of record"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - Service Management
+      // ============================================
+      {
+        id: "servicenow",
+        source: "ServiceNow",
+        subcategory: "IT Service Management",
+        category: "Service Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "ITSM Platform",
+        example_fields: ["Ticket ID", "Work Order", "SLA", "Incident Type", "Change Record", "Approval Status", "Service Catalog"],
+        data_direction: "output",
+        benchmark_role: "Managed service delivery"
+      },
+      {
+        id: "bmc-helix",
+        source: "BMC Helix",
+        subcategory: "IT Service Management",
+        category: "Service Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "ITSM Platform",
+        example_fields: ["Ticket ID", "Work Order", "SLA", "Incident Type", "Change Record", "Approval Status", "Service Catalog"],
+        data_direction: "output",
+        benchmark_role: "Managed service delivery"
+      },
+      {
+        id: "freshservice",
+        source: "Freshservice",
+        subcategory: "IT Service Management",
+        category: "Service Management",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "ITSM Platform",
+        example_fields: ["Ticket ID", "Work Order", "SLA", "Incident Type", "Change Record", "Approval Status", "Service Catalog"],
+        data_direction: "output",
+        benchmark_role: "Managed service delivery"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - AP Automation
+      // ============================================
+      {
+        id: "tipalti",
+        source: "Tipalti",
+        subcategory: "Accounts Payable Automation",
+        category: "AP Automation",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "AP Platform",
+        example_fields: ["Invoice ID", "OCR Data", "2-Way Match", "3-Way Match", "Approval Status", "Payment Status", "Vendor ID"],
+        data_direction: "output",
+        benchmark_role: "Payable-ready invoices"
+      },
+      {
+        id: "basware",
+        source: "Basware",
+        subcategory: "Accounts Payable Automation",
+        category: "AP Automation",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "AP Platform",
+        example_fields: ["Invoice ID", "OCR Data", "2-Way Match", "3-Way Match", "Approval Status", "Payment Status", "Vendor ID"],
+        data_direction: "output",
+        benchmark_role: "Payable-ready invoices"
+      },
+      {
+        id: "tradeshift",
+        source: "Tradeshift",
+        subcategory: "Accounts Payable Automation",
+        category: "AP Automation",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "AP Platform",
+        example_fields: ["Invoice ID", "OCR Data", "2-Way Match", "3-Way Match", "Approval Status", "Payment Status", "Vendor ID"],
+        data_direction: "output",
+        benchmark_role: "Payable-ready invoices"
+      },
+      {
+        id: "avidxchange",
+        source: "AvidXchange",
+        subcategory: "Accounts Payable Automation",
+        category: "AP Automation",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "AP Platform",
+        example_fields: ["Invoice ID", "OCR Data", "2-Way Match", "3-Way Match", "Approval Status", "Payment Status", "Vendor ID"],
+        data_direction: "output",
+        benchmark_role: "Payable-ready invoices"
+      },
+      // ============================================
+      // ENTERPRISE OUTPUTS - ERP / Finance
+      // ============================================
+      {
+        id: "sap-s4hana",
+        source: "SAP S/4HANA",
+        subcategory: "Enterprise Resource Planning",
+        category: "ERP / Finance",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "ERP Platform",
+        example_fields: ["GL Entry", "Cost Center", "Budget", "Commitment", "Accrual", "Vendor Payment", "CapEx/OpEx"],
+        data_direction: "output",
+        benchmark_role: "Financial system of record"
+      },
+      {
+        id: "oracle-netsuite",
+        source: "Oracle NetSuite",
+        subcategory: "Enterprise Resource Planning",
+        category: "ERP / Finance",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "ERP Platform",
+        example_fields: ["GL Entry", "Cost Center", "Budget", "Commitment", "Accrual", "Vendor Payment", "CapEx/OpEx"],
+        data_direction: "output",
+        benchmark_role: "Financial system of record"
+      },
+      {
+        id: "dynamics-365-finance",
+        source: "Microsoft Dynamics 365 Finance",
+        subcategory: "Enterprise Resource Planning",
+        category: "ERP / Finance",
+        delivery_mode: "Official API",
+        coverage: "Global",
+        data_type: "ERP Platform",
+        example_fields: ["GL Entry", "Cost Center", "Budget", "Commitment", "Accrual", "Vendor Payment", "CapEx/OpEx"],
+        data_direction: "output",
+        benchmark_role: "Financial system of record"
       }
     ];
 
-    const CATEGORIES = ["All", "Taxonomies & Standards", "Fulfillment Channels", "Business Verbs", "Role Hierarchies", "Job Demand", "Pay, Rates & Economics", "Skills & Capabilities", "Workforce Supply", "Company Context"];
+    // Categories for inputs and outputs
+    const INPUT_CATEGORIES = ["All", "Taxonomies & Standards", "Fulfillment Channels", "Business Verbs", "Role Hierarchies", "Job Demand", "Pay, Rates & Economics", "Skills & Capabilities", "Workforce Supply", "Company Context"];
+    const OUTPUT_CATEGORIES = ["All", "Contract Management", "Document Signature", "Source to Pay", "Purchase Orders", "Procurement Orchestration", "Autonomous Sourcing", "Vendor Management", "HRIS / HCM", "Service Management", "AP Automation", "ERP / Finance"];
+    const ALL_CATEGORIES = ["All", "Taxonomies & Standards", "Fulfillment Channels", "Business Verbs", "Role Hierarchies", "Job Demand", "Pay, Rates & Economics", "Skills & Capabilities", "Workforce Supply", "Company Context", "Contract Management", "Document Signature", "Source to Pay", "Purchase Orders", "Procurement Orchestration", "Autonomous Sourcing", "Vendor Management", "HRIS / HCM", "Service Management", "AP Automation", "ERP / Finance"];
 
     const elGrid = document.getElementById("grid");
     const elQ = document.getElementById("q");
@@ -2106,8 +2745,38 @@
     let state = {
       q: "",
       category: "All",
-      view: "cards" // "cards" or "list"
+      view: "cards", // "cards" or "list"
+      direction: "all" // "all", "input", or "output"
     };
+
+    // Direction toggle handling
+    const dirAllBtn = document.getElementById('dirAll');
+    const dirInputsBtn = document.getElementById('dirInputs');
+    const dirOutputsBtn = document.getElementById('dirOutputs');
+
+    function setDirection(dir) {
+      state.direction = dir;
+      state.category = "All"; // Reset category when changing direction
+      
+      // Update button states
+      dirAllBtn.classList.toggle('active', dir === 'all');
+      dirInputsBtn.classList.toggle('active', dir === 'input');
+      dirOutputsBtn.classList.toggle('active', dir === 'output');
+      
+      renderChips();
+      render();
+      localStorage.setItem('triangulate-direction', dir);
+    }
+
+    dirAllBtn.addEventListener('click', () => setDirection('all'));
+    dirInputsBtn.addEventListener('click', () => setDirection('input'));
+    dirOutputsBtn.addEventListener('click', () => setDirection('output'));
+
+    // Initialize direction from localStorage
+    const savedDirection = localStorage.getItem('triangulate-direction');
+    if (savedDirection) {
+      setDirection(savedDirection);
+    }
 
     // View toggle handling
     const viewCardsBtn = document.getElementById('viewCards');
@@ -2225,7 +2894,18 @@
 
     function renderChips() {
       elChips.innerHTML = "";
-      CATEGORIES.forEach(cat => {
+      
+      // Select categories based on direction
+      let categories;
+      if (state.direction === 'input') {
+        categories = INPUT_CATEGORIES;
+      } else if (state.direction === 'output') {
+        categories = OUTPUT_CATEGORIES;
+      } else {
+        categories = ALL_CATEGORIES;
+      }
+      
+      categories.forEach(cat => {
         const chip = document.createElement("div");
         chip.className = "chip" + (state.category === cat ? " active" : "");
         chip.textContent = cat;
@@ -2274,14 +2954,38 @@
       top.className = "api-top";
 
       const left = document.createElement("div");
+      
+      // Title row with direction indicator
+      const titleRow = document.createElement("div");
+      titleRow.style.display = "flex";
+      titleRow.style.alignItems = "center";
+      titleRow.style.gap = "8px";
+      
+      // Direction indicator with arrow
+      const dirIndicator = document.createElement("div");
+      dirIndicator.className = "direction-indicator " + item.data_direction;
+      if (item.data_direction === 'input') {
+        // Arrow pointing right (into the system)
+        dirIndicator.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
+        dirIndicator.title = "Input data source";
+      } else {
+        // Arrow pointing left (out of the system)
+        dirIndicator.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>';
+        dirIndicator.title = "Output system";
+      }
+      
       const h = document.createElement("h3");
       h.className = "api-title";
       h.textContent = item.source;
+      
+      titleRow.appendChild(dirIndicator);
+      titleRow.appendChild(h);
+      
       const sub = document.createElement("div");
       sub.className = "api-sub";
-      sub.textContent = item.subcategory + " â€¢ " + item.data_type;
+      sub.textContent = item.subcategory + " • " + item.data_type;
 
-      left.appendChild(h);
+      left.appendChild(titleRow);
       left.appendChild(sub);
 
       const right = document.createElement("div");
@@ -2366,12 +3070,23 @@
 
     function render() {
       const items = DATA
+        .filter(i => {
+          // Filter by direction
+          if (state.direction === 'input') return i.data_direction === 'input';
+          if (state.direction === 'output') return i.data_direction === 'output';
+          return true;
+        })
         .filter(i => state.category === "All" ? true : i.category === state.category)
         .filter(i => matches(i, state.q));
 
       elGrid.innerHTML = "";
       items.forEach(i => elGrid.appendChild(card(i)));
-      elCount.textContent = items.length + " data source" + (items.length !== 1 ? "s" : "");
+      
+      // Update count text based on direction
+      let label = "data source";
+      if (state.direction === 'input') label = "input source";
+      if (state.direction === 'output') label = "output system";
+      elCount.textContent = items.length + " " + label + (items.length !== 1 ? "s" : "");
     }
 
     elQ.addEventListener("input", (e) => {
