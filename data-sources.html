@@ -519,6 +519,103 @@
       height: 12px;
     }
 
+    .direction-btn.sow-btn.active {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--text);
+    }
+
+    .direction-btn.sow-btn:hover:not(.active) {
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .direction-btn.transformer-btn.active {
+      background: rgba(168, 85, 247, 0.15);
+      color: #a855f7;
+    }
+
+    .direction-btn.transformer-btn:hover:not(.active) {
+      border-color: rgba(168, 85, 247, 0.5);
+    }
+
+    .direction-indicator.sow {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .direction-indicator.sow svg {
+      color: #3b82f6;
+    }
+
+    .direction-indicator.transformer {
+      background: rgba(168, 85, 247, 0.15);
+      color: #a855f7;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .direction-indicator.transformer svg {
+      color: #a855f7;
+    }
+
+    /* SoW list view adjustments */
+    .api-card.sow-card .sow-data-type,
+    .api-card.sow-card .sow-description {
+      display: none;
+    }
+
+    .grid.list-view .api-card.sow-card {
+      grid-template-columns: 2fr 1fr 2.5fr auto;
+    }
+
+    .grid.list-view .api-card.sow-card .sow-data-type {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .grid.list-view .api-card.sow-card .sow-description {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .grid.list-view .api-card.sow-card .fields {
+      display: none;
+    }
+
+    .grid.list-view .api-card.sow-card .foot {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
+    .grid.list-view .api-card.sow-card .foot .role {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .grid.list-view .api-card.sow-card {
+        grid-template-columns: 1.5fr 1fr auto;
+      }
+      .grid.list-view .api-card.sow-card .sow-description {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid.list-view .api-card.sow-card {
+        grid-template-columns: 1fr auto;
+      }
+      .grid.list-view .api-card.sow-card .sow-data-type {
+        display: none;
+      }
+    }
+
     /* View Toggle */
     .view-toggle {
       display: flex;
@@ -868,6 +965,42 @@
       }
     }
 
+    /* SoW List Header */
+    .sow-list-header {
+      display: none;
+      padding: 12px 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sow-list-header.visible {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2.5fr auto;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .sow-list-header.visible {
+        grid-template-columns: 1.5fr 1fr auto;
+      }
+      .sow-list-header .lh-desc {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sow-list-header.visible {
+        display: none;
+      }
+    }
+
     .foot {
       display: flex;
       align-items: center;
@@ -1115,12 +1248,12 @@
     <section class="hero">
       <div class="card hero-left">
         <div class="badge">Data Platform Preview</div>
-        <h2 class="title">Comprehensive Workforce Data from Deployed</h2>
+        <h2 class="title">Multi-modal Workforce Data</h2>
         <p class="subtitle">
           Access structured workforce intelligence including GICS industry classifications, fulfillment channel taxonomies, business action verbs, seniority levels, and global labour cost indicators from ILO and OECD.
         </p>
         <div class="source-badge">
-          <strong>Source:</strong> Deployed — Enterprise Workforce Intelligence
+          <strong>Source:</strong> Certified Workforce Data Architecture
         </div>
       </div>
 
@@ -1155,16 +1288,16 @@
           All
         </button>
         <button class="direction-btn input-btn" id="dirInputs" title="Input sources">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 3v18M5 10l7-7 7 7"/>
-          </svg>
           Inputs
         </button>
+        <button class="direction-btn transformer-btn" id="dirTransformers" title="Transformer models">
+          Transformers
+        </button>
         <button class="direction-btn output-btn" id="dirOutputs" title="Output systems">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 3v18M5 14l7 7 7-7"/>
-          </svg>
           Outputs
+        </button>
+        <button class="direction-btn sow-btn" id="dirSoW" title="SoW Architecture">
+          SoW
         </button>
       </div>
       <div class="chips" id="chips"></div>
@@ -1199,6 +1332,13 @@
       <span></span>
     </div>
 
+    <div class="list-header sow-list-header" id="sowListHeader">
+      <span>Field / Category</span>
+      <span>Data Type</span>
+      <span class="lh-desc">Description</span>
+      <span></span>
+    </div>
+
     <section class="grid" id="grid" aria-label="Data cards"></section>
 
     <footer>
@@ -1207,7 +1347,6 @@
         <a href="index.html">Back to Platform</a>
         <a href="#api-list">Back to list</a>
         <a href="javascript:void(0)" id="copyJsonBtn">Copy JSON</a>
-        <a href="javascript:void(0)" id="downloadJsonBtn">Download JSON</a>
       </div>
     </footer>
   </div>
@@ -1235,14 +1374,14 @@
     // Data from Deployed sources and external APIs
     const DATA = [
       // ============================================
-      // DEPLOYED - GICS Industry Codes
+      // MSCI - GICS Industry Codes
       // ============================================
       {
         id: "gics-sectors",
-        source: "Deployed",
-        subcategory: "GICS Industry Classification",
+        source: "MSCI GICS",
+        subcategory: "GICS Sectors",
         category: "Taxonomies & Standards",
-        delivery_mode: "Structured Data",
+        delivery_mode: "Licensed Data",
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Energy", "Materials", "Industrials", "Consumer Discretionary", "Consumer Staples", "Health Care", "Financials", "Information Technology", "Communication Services", "Utilities", "Real Estate"],
@@ -1251,10 +1390,10 @@
       },
       {
         id: "gics-industry-groups",
-        source: "Deployed",
+        source: "MSCI GICS",
         subcategory: "GICS Industry Groups",
         category: "Taxonomies & Standards",
-        delivery_mode: "Structured Data",
+        delivery_mode: "Licensed Data",
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Energy Equipment & Services", "Banks", "Software & Services", "Pharmaceuticals & Biotechnology", "Capital Goods", "Consumer Services", "Media & Entertainment", "Insurance", "Semiconductors"],
@@ -1263,10 +1402,10 @@
       },
       {
         id: "gics-industries",
-        source: "Deployed",
+        source: "MSCI GICS",
         subcategory: "GICS Industries",
         category: "Taxonomies & Standards",
-        delivery_mode: "Structured Data",
+        delivery_mode: "Licensed Data",
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Oil & Gas Drilling", "Aerospace & Defense", "IT Consulting", "Biotechnology", "Asset Management", "Hotels & Restaurants", "Electric Utilities", "Semiconductors", "Wireless Telecom"],
@@ -1275,10 +1414,10 @@
       },
       {
         id: "gics-sub-industries",
-        source: "Deployed",
+        source: "MSCI GICS",
         subcategory: "GICS Sub-Industries",
         category: "Taxonomies & Standards",
-        delivery_mode: "Structured Data",
+        delivery_mode: "Licensed Data",
         coverage: "Global",
         data_type: "Industry Taxonomy",
         example_fields: ["Oil & Gas Exploration & Production", "Application Software", "Systems Software", "Diversified Banks", "Regional Banks", "Data Processing", "Internet Services", "Managed Health Care"],
@@ -1417,14 +1556,14 @@
       {
         id: "seniority-levels",
         source: "Deployed",
-        subcategory: "Seniority Framework",
+        subcategory: "Job Hierarchy Framework",
         category: "Role Hierarchies",
-        delivery_mode: "Coming Soon",
+        delivery_mode: "Structured Data",
         coverage: "Global",
         data_type: "Seniority Taxonomy",
-        example_fields: ["Entry Level", "Junior", "Mid-Level", "Senior", "Lead", "Principal", "Director", "VP", "C-Suite", "Board"],
+        example_fields: ["Level 1: Associate/Analyst (0-3 yrs)", "Level 2: Senior Associate/Consultant (3-5 yrs)", "Level 3: Manager/Engagement Manager (5-8 yrs)", "Level 4: Principal/Senior Manager (8-12 yrs)", "Level 5: Associate Partner/Director (12-15 yrs)", "Level 6: Partner (15-20 yrs)", "Level 7: Managing Partner/Senior Partner (20+ yrs)"],
         data_direction: "input",
-        benchmark_role: "Standardized seniority level mapping"
+        benchmark_role: "7-level job hierarchy mapping across Consulting, Industry (US), and Industry (Global/EMEA)"
       },
       // ============================================
       // A. PROFESSIONAL NETWORK & PLATFORM DATA (LinkedIn)
@@ -2735,7 +2874,669 @@
     // Categories for inputs and outputs
     const INPUT_CATEGORIES = ["All", "Taxonomies & Standards", "Fulfillment Channels", "Business Verbs", "Role Hierarchies", "Job Demand", "Pay, Rates & Economics", "Skills & Capabilities", "Workforce Supply", "Company Context"];
     const OUTPUT_CATEGORIES = ["All", "Contract Management", "Document Signature", "Source to Pay", "Purchase Orders", "Procurement Orchestration", "Autonomous Sourcing", "Vendor Management", "HRIS / HCM", "Service Management", "AP Automation", "ERP / Finance"];
-    const ALL_CATEGORIES = ["All", "Taxonomies & Standards", "Fulfillment Channels", "Business Verbs", "Role Hierarchies", "Job Demand", "Pay, Rates & Economics", "Skills & Capabilities", "Workforce Supply", "Company Context", "Contract Management", "Document Signature", "Source to Pay", "Purchase Orders", "Procurement Orchestration", "Autonomous Sourcing", "Vendor Management", "HRIS / HCM", "Service Management", "AP Automation", "ERP / Finance"];
+    const ALL_CATEGORIES = ["All", "Taxonomies & Standards", "Fulfillment Channels", "Business Verbs", "Role Hierarchies", "Job Demand", "Pay, Rates & Economics", "Skills & Capabilities", "Workforce Supply", "Company Context", "Frontier LLM", "Open-source LLM", "Enterprise NLP", "Enterprise Platform", "Contract Management", "Document Signature", "Source to Pay", "Purchase Orders", "Procurement Orchestration", "Autonomous Sourcing", "Vendor Management", "HRIS / HCM", "Service Management", "AP Automation", "ERP / Finance"];
+    const SOW_CATEGORIES = ["All", "Identifier", "Parties", "Time", "Pricing", "Scope", "People", "Performance", "Regulation", "Legal", "Commercial", "Hygiene"];
+    const TRANSFORMER_CATEGORIES = ["All", "Frontier LLM", "Open-source LLM", "Enterprise NLP", "Enterprise Platform"];
+
+    // LLM Council / Transformer Data
+    const TRANSFORMER_DATA = [
+      // ============================================
+      // FRONTIER / GENERAL-PURPOSE LLMs
+      // ============================================
+      {
+        id: "openai-gpt",
+        source: "OpenAI",
+        subcategory: "GPT-4.1 / GPT-4o / GPT-5 class",
+        category: "Frontier LLM",
+        delivery_mode: "Hosted API",
+        coverage: "Global",
+        data_type: "Reasoning Backbone",
+        data_direction: "transformer",
+        example_fields: ["Raw user intent", "Partial context", "Taxonomy", "Normalised intent (T/S/J/O/P)", "Structured JSON", "Explanations"],
+        benchmark_role: "Best-in-class reasoning, tool calling, schema adherence. Council role: Canonical interpretation, conflict resolution, WSO synthesis."
+      },
+      {
+        id: "anthropic-claude",
+        source: "Anthropic Claude",
+        subcategory: "Claude 3.5 / 4 class",
+        category: "Frontier LLM",
+        delivery_mode: "Hosted API",
+        coverage: "Global",
+        data_type: "Reasoning Backbone",
+        data_direction: "transformer",
+        example_fields: ["SOW drafts", "Policy rules", "Legal constraints", "Risk flags", "Alternative framings"],
+        benchmark_role: "Long-context reasoning, safer outputs, policy sensitivity. Council role: Governance check, policy reasoning, contract/legal logic."
+      },
+      {
+        id: "google-gemini",
+        source: "Google Gemini",
+        subcategory: "Gemini Pro / Ultra class",
+        category: "Frontier LLM",
+        delivery_mode: "Hosted API",
+        coverage: "Global",
+        data_type: "Reasoning Backbone",
+        data_direction: "transformer",
+        example_fields: ["Country data", "Labour market", "Macro data", "Sanity checks", "Corroboration"],
+        benchmark_role: "Strong factual grounding, search-adjacent reasoning. Council role: Fact validation, market/labour context."
+      },
+      // ============================================
+      // OPEN-SOURCE LLMs
+      // ============================================
+      {
+        id: "meta-llama",
+        source: "Meta LLaMA",
+        subcategory: "LLaMA 3 / 4 class",
+        category: "Open-source LLM",
+        delivery_mode: "Self-hosted / OSS weights",
+        coverage: "Self-hosted",
+        data_type: "Classification Engine",
+        data_direction: "transformer",
+        example_fields: ["Job titles", "Skills", "Short descriptions", "Labels", "Embeddings", "Clusters"],
+        benchmark_role: "Fine-tuning, cost control, private deployment. Council role: Classification, tagging, routing, deterministic taxonomy mapping."
+      },
+      {
+        id: "mistral-mixtral",
+        source: "Mistral / Mixtral",
+        subcategory: "Mistral Large / Mixtral 8x7B",
+        category: "Open-source LLM",
+        delivery_mode: "Self-hosted / EU-friendly",
+        coverage: "Self-hosted / EU",
+        data_type: "Classification Engine",
+        data_direction: "transformer",
+        example_fields: ["Job descriptions", "Resumes", "SOW scopes", "Skills", "Seniority bands"],
+        benchmark_role: "Fast, efficient, strong at classification. Council role: Skill extraction, seniority inference."
+      },
+      {
+        id: "alibaba-qwen",
+        source: "Qwen (Alibaba)",
+        subcategory: "Qwen 2.5 / Qwen-Max",
+        category: "Open-source LLM",
+        delivery_mode: "Self-hosted / OSS weights",
+        coverage: "Global",
+        data_type: "Multilingual Engine",
+        data_direction: "transformer",
+        example_fields: ["Multilingual roles", "Cross-border skills", "Normalized outputs", "Structured JSON"],
+        benchmark_role: "Multilingual, strong structured output. Council role: Global role/skill normalisation across regions."
+      },
+      // ============================================
+      // SPECIALIST / TASK-OPTIMISED MODELS
+      // ============================================
+      {
+        id: "cohere",
+        source: "Cohere",
+        subcategory: "Command / Embed models",
+        category: "Enterprise NLP",
+        delivery_mode: "Hosted API",
+        coverage: "Global",
+        data_type: "Embeddings & Retrieval",
+        data_direction: "transformer",
+        example_fields: ["Skills", "Job titles", "Vectors", "Similarity scores", "Semantic search"],
+        benchmark_role: "Classification, embeddings, retrieval. Council role: Skill taxonomy matching, similarity scoring."
+      },
+      {
+        id: "ai21-labs",
+        source: "AI21 Labs",
+        subcategory: "Jamba / Jurassic models",
+        category: "Enterprise NLP",
+        delivery_mode: "Hosted API",
+        coverage: "Global",
+        data_type: "Language Generation",
+        data_direction: "transformer",
+        example_fields: ["Explanations", "User-facing text", "Rewritten content", "Summaries"],
+        benchmark_role: "Controlled generation, rewriting. Council role: Explanation layer, user-facing text generation."
+      },
+      // ============================================
+      // CLOUD-NATIVE / ENTERPRISE PLATFORMS
+      // ============================================
+      {
+        id: "azure-openai",
+        source: "Azure OpenAI",
+        subcategory: "Enterprise OpenAI Service",
+        category: "Enterprise Platform",
+        delivery_mode: "Enterprise API",
+        coverage: "Global",
+        data_type: "Governance Platform",
+        data_direction: "transformer",
+        example_fields: ["RBAC", "Audit logs", "Security policies", "Compliance", "Model access"],
+        benchmark_role: "Security, RBAC, audit capabilities. Council role: Regulated enterprise deployments with full governance."
+      },
+      {
+        id: "aws-bedrock",
+        source: "AWS Bedrock",
+        subcategory: "LLM Aggregation Platform",
+        category: "Enterprise Platform",
+        delivery_mode: "Enterprise API",
+        coverage: "Global",
+        data_type: "Model Orchestration",
+        data_direction: "transformer",
+        example_fields: ["Model selection", "Governance rules", "Unified API", "Cost management", "Model versioning"],
+        benchmark_role: "Model choice + governance. Council role: LLM abstraction layer, multi-model orchestration."
+      }
+    ];
+
+    // SoW Architecture Data from WorldCC and Deployed
+    const SOW_DATA = [
+      {
+        id: "sow-unique-id",
+        source: "Unique ID",
+        subcategory: "Identifier",
+        category: "Identifier",
+        field_type: "Number",
+        data_direction: "sow",
+        impact: "Essential for project tracking and change management. Without a unique identifier, work cannot be properly tracked, change requests become difficult to link to specific projects, and project portfolio management becomes chaotic.",
+        digitisation: "Auto-generated unique IDs with sequential numbering and project linking. Real-time tracking dashboard shows all active projects. Automated change request linking connects modifications to original project IDs."
+      },
+      {
+        id: "sow-type-of-work",
+        source: "Type of Work",
+        subcategory: "Identifier",
+        category: "Identifier",
+        field_type: "Free text",
+        data_direction: "sow",
+        impact: "Critical for portfolio analysis and resource allocation. Without work classification, organizations cannot compare projects across their portfolio, analyze spending patterns, or make informed strategic decisions about work types.",
+        digitisation: "Predefined taxonomy dropdown ensures consistent classification. Portfolio analytics dashboard automatically categorizes and compares work types. Spending pattern analysis provides real-time insights."
+      },
+      {
+        id: "sow-supplier-name",
+        source: "Supplier Name",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Free text",
+        data_direction: "sow",
+        impact: "Fundamental for legal clarity and contract enforcement. Free text supplier names create significant legal risks as the wrong entity may be contracted, making contract enforcement difficult or impossible.",
+        digitisation: "Validated supplier database with pre-approved entities only. Auto-complete functionality prevents typos and wrong entity selection. Legal entity verification integrated with company registries."
+      },
+      {
+        id: "sow-supplier-company-number",
+        source: "Supplier Company Number",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Number",
+        data_direction: "sow",
+        impact: "Mandatory for legal entity verification and compliance. Without standardized company numbers, buyers must manually verify entities across different jurisdictions, increasing the risk of contracting with incorrect or non-existent companies.",
+        digitisation: "Automated company registry lookup validates entities in real-time. Multi-jurisdiction verification checks across different countries automatically. Error prevention alerts warn if company numbers are invalid."
+      },
+      {
+        id: "sow-buyer-name",
+        source: "Company Name (Buyer)",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Free text",
+        data_direction: "sow",
+        impact: "Essential for buyer entity identification and legal protection. Free text buyer names risk selecting wrong legal entities, particularly dangerous for organizations with multiple divisions or locations.",
+        digitisation: "Pre-configured buyer entity dropdown with approved legal entities only. Division/location mapping automatically selects correct entity based on project location."
+      },
+      {
+        id: "sow-buyer-company-number",
+        source: "Buyer Company Number",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Number",
+        data_direction: "sow",
+        impact: "Critical for internal compliance and tax accuracy. Without structured company numbers, buyers risk using incorrect jurisdictional entities or tax regions, leading to compliance violations.",
+        digitisation: "Automated entity matching links company numbers to correct jurisdictions. Tax region validation ensures compliance with local requirements. Compliance dashboard tracks entity usage."
+      },
+      {
+        id: "sow-subcontract-permitted",
+        source: "Subcontract Permitted?",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Mandatory for supply chain control and risk management. Without clear subcontracting clauses, suppliers can engage unknown third parties, creating uncontrolled supply chain risks and potential security vulnerabilities.",
+        digitisation: "Policy-driven defaults automatically set subcontracting permissions based on work type. Approval workflow routes subcontracting requests to appropriate stakeholders."
+      },
+      {
+        id: "sow-subcontractor-name",
+        source: "Stated Subcontractor Name",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Free text",
+        data_direction: "sow",
+        impact: "Essential for supply chain transparency and due diligence. Free text subcontractor names create risks of engaging with incorrect entities, preventing proper due diligence and supply chain management.",
+        digitisation: "Approved subcontractor database limits selection to pre-qualified entities. Due diligence tracking shows qualification status and renewal dates. Risk scoring integration highlights high-risk subcontractors."
+      },
+      {
+        id: "sow-employees-only",
+        source: "Employees Only Mandate",
+        subcategory: "Parties",
+        category: "Parties",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Critical for employment law compliance and classification. Without employee-only clauses, suppliers can use contractors or freelancers, creating employment classification risks and potential IR35/tax compliance issues.",
+        digitisation: "Compliance rule engine automatically sets employee requirements based on work type and jurisdiction. IR35 assessment integration evaluates employment classification risks."
+      },
+      {
+        id: "sow-effective-date",
+        source: "Effective Date",
+        subcategory: "Time",
+        category: "Time",
+        field_type: "Date",
+        data_direction: "sow",
+        impact: "Fundamental for contract validity and timing certainty. Without effective dates, contract commencement becomes unclear, creating legal ambiguity about when obligations begin.",
+        digitisation: "Calendar integration prevents weekend/holiday effective dates. Automated date validation ensures logical date sequencing. Timeline visualization shows contract phases and key dates."
+      },
+      {
+        id: "sow-start-date",
+        source: "Start Date",
+        subcategory: "Time",
+        category: "Time",
+        field_type: "Date",
+        data_direction: "sow",
+        impact: "Essential for project planning and resource allocation. Free text start dates allow inappropriate timing (weekends, holidays), disrupting business operations and resource planning.",
+        digitisation: "Business day validation automatically adjusts to next working day. Resource calendar integration checks availability before setting dates. Holiday calendar sync prevents inappropriate start dates."
+      },
+      {
+        id: "sow-end-date",
+        source: "End Date",
+        subcategory: "Time",
+        category: "Time",
+        field_type: "Date",
+        data_direction: "sow",
+        impact: "Critical for budget control and resource planning. Free text end dates create planning uncertainty and risk inappropriate completion timing that disrupts business operations.",
+        digitisation: "Duration calculation engine automatically calculates end dates based on work estimates. Budget period alignment ensures dates align with financial planning cycles."
+      },
+      {
+        id: "sow-can-terminate",
+        source: "Can You Terminate",
+        subcategory: "Time",
+        category: "Time",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Mandatory for contract flexibility and risk mitigation. Without termination clauses, buyers are locked into paying full contract value regardless of performance or changing business needs.",
+        digitisation: "Standard termination library provides pre-approved termination clauses by work type. Risk-based recommendations suggest termination rights based on project risk profile."
+      },
+      {
+        id: "sow-termination-notice",
+        source: "Termination Notice",
+        subcategory: "Time",
+        category: "Time",
+        field_type: "Days",
+        data_direction: "sow",
+        impact: "Essential for standardization and operational efficiency. Variable termination notice periods require individual negotiation, increasing contract complexity and administrative burden.",
+        digitisation: "Standardized notice periods automatically populate based on work type and value. Policy compliance ensures consistency across all contracts."
+      },
+      {
+        id: "sow-penalty",
+        source: "Penalty",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Critical for performance management and commercial discipline. Without penalty frameworks, poor performance cannot be financially addressed, encouraging supplier complacency.",
+        digitisation: "Performance-linked penalty calculator suggests penalties based on project value and risk. Automated performance monitoring tracks KPIs and triggers penalty assessments."
+      },
+      {
+        id: "sow-penalty-amount",
+        source: "Penalty Amount",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Value or %",
+        data_direction: "sow",
+        impact: "Essential for commercial enforceability and consistency. Without standardized penalty amounts, each breach requires individual negotiation, reducing enforcement effectiveness.",
+        digitisation: "Dynamic penalty calculator computes amounts based on project value and impact. Market benchmarking ensures competitive penalty levels."
+      },
+      {
+        id: "sow-incentive",
+        source: "Incentive",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Important for performance optimization and supplier motivation. Without incentive frameworks, suppliers have no financial motivation to exceed baseline performance.",
+        digitisation: "Value-based incentive designer creates incentives aligned with business outcomes. Performance tracking integration monitors metrics for incentive calculation."
+      },
+      {
+        id: "sow-incentive-amount",
+        source: "Incentive Amount",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Value or %",
+        data_direction: "sow",
+        impact: "Essential for performance motivation and commercial effectiveness. Without defined incentive amounts, performance improvements cannot be properly rewarded.",
+        digitisation: "Outcome-based calculator links incentive amounts to measurable business value. Budget optimization ensures incentives fit within project budgets."
+      },
+      {
+        id: "sow-pricing-section",
+        source: "Pricing Section",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Free text",
+        data_direction: "sow",
+        impact: "Fundamental for cost control and commercial transparency. Without structured pricing sections, costs become unclear and difficult to manage, typically resulting in higher overall spending.",
+        digitisation: "Structured pricing templates ensure consistent cost capture across all projects. Budget integration links pricing to financial planning systems."
+      },
+      {
+        id: "sow-resource-table",
+        source: "Resource/Price Table",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Table",
+        data_direction: "sow",
+        impact: "Critical for cost transparency and resource optimization. Without resource breakdown requirements, buyers cannot assess value for money or optimize resource allocation.",
+        digitisation: "Resource rate library maintains current market rates by skill level. Optimization algorithms suggest optimal resource mixes for cost efficiency."
+      },
+      {
+        id: "sow-currency",
+        source: "Currency",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Currency",
+        data_direction: "sow",
+        impact: "Essential for financial accuracy and foreign exchange management. Without currency specification, invoicing errors and foreign exchange disputes become common.",
+        digitisation: "Multi-currency support with real-time exchange rate updates. Automated currency conversion for reporting in base currency. FX risk management tracks exposure."
+      },
+      {
+        id: "sow-pricing-table",
+        source: "Pricing Table",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Table",
+        data_direction: "sow",
+        impact: "Mandatory for commercial consistency and cost comparison. Without standardized pricing tables, cost comparison across suppliers becomes impossible.",
+        digitisation: "Standardized pricing templates ensure consistency across all contracts. Competitive analysis tools compare pricing across suppliers automatically."
+      },
+      {
+        id: "sow-discount",
+        source: "Discount Price Total",
+        subcategory: "Pricing",
+        category: "Pricing",
+        field_type: "Value",
+        data_direction: "sow",
+        impact: "Important for commercial negotiation and cost optimization. Without integrated discount mechanisms, pricing negotiations become fragmented and cost optimization opportunities are missed.",
+        digitisation: "Integrated discount calculator applies discounts within unified pricing tables. Negotiation tracking records discount history for future reference."
+      },
+      {
+        id: "sow-scope-section",
+        source: "Scope of Work Section",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Fundamental for deliverable clarity and scope management. Without centralized scope sections, work requirements become scattered and unclear, leading to scope creep.",
+        digitisation: "Structured scope templates with mandatory sections for comprehensive coverage. Scope change tracking monitors all modifications with full audit trail."
+      },
+      {
+        id: "sow-scope-table",
+        source: "Scope of Work Table",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Text",
+        data_direction: "sow",
+        impact: "Essential for structured requirement definition and repeatability. Without tabulated scope, work requirements cannot be structured consistently.",
+        digitisation: "Tabular scope builder with predefined components and reusable elements. Requirement traceability links scope items to deliverables and acceptance criteria."
+      },
+      {
+        id: "sow-out-of-scope",
+        source: "Out of Scope",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Text",
+        data_direction: "sow",
+        impact: "Critical for boundary setting and scope protection. Without explicit exclusions, suppliers can claim additional work is within scope, leading to cost overruns.",
+        digitisation: "Exclusion library with standard out-of-scope items by work type. Scope boundary alerts warn when requested work may be out of scope."
+      },
+      {
+        id: "sow-phases",
+        source: "Phases Structure",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Important for complex project management and risk control. Without phase structures, complex work cannot be broken into manageable sections.",
+        digitisation: "Phase template library with proven structures for different work types. Milestone tracking monitors progress across all phases automatically."
+      },
+      {
+        id: "sow-deliverables",
+        source: "Deliverables Structure",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Essential for outcome clarity and acceptance management. Without structured deliverables, acceptance becomes subjective and disputes over completion are common.",
+        digitisation: "Deliverable framework with standardized formats and quality criteria. Acceptance workflow automates review and approval processes."
+      },
+      {
+        id: "sow-activities",
+        source: "Activities Structure",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Important for work methodology and process clarity. Without activity structures, how work will be performed remains unclear.",
+        digitisation: "Activity templates with best-practice methodologies for different work types. Progress tracking integration monitors activity completion in real-time."
+      },
+      {
+        id: "sow-acceptance-criteria",
+        source: "Acceptance Criteria Section",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Critical for delivery confirmation and dispute prevention. Without acceptance criteria, buyers cannot demonstrate delivery requirements.",
+        digitisation: "Criteria builder with measurable, testable acceptance standards. Automated testing integration validates criteria objectively where possible."
+      },
+      {
+        id: "sow-customer-dependency",
+        source: "Customer Dependency Section",
+        subcategory: "Scope",
+        category: "Scope",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Essential for project risk management and accountability clarity. Without dependency identification, project delays caused by customer actions cannot be properly managed.",
+        digitisation: "Dependency mapping visualizes all customer dependencies and impacts. Automated reminders alert stakeholders of upcoming dependency deadlines."
+      },
+      {
+        id: "sow-key-personnel",
+        source: "Key Personnel Section",
+        subcategory: "People",
+        category: "People",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Important for resource quality and project continuity. Without key personnel requirements, suppliers can assign inappropriate resources.",
+        digitisation: "Skills database matches personnel requirements to qualified candidates. CV/qualification verification ensures personnel meet specified criteria."
+      },
+      {
+        id: "sow-governance",
+        source: "Governance Structure",
+        subcategory: "People",
+        category: "People",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Critical for project oversight and management maturity. Without governance frameworks, projects lack proper oversight and management structure.",
+        digitisation: "Governance templates with role definitions and decision-making processes. Automated reporting provides real-time governance dashboards."
+      },
+      {
+        id: "sow-warranty-yn",
+        source: "Warranty",
+        subcategory: "Performance",
+        category: "Performance",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Important for quality assurance and post-delivery protection. Without warranty sections, buyers have no recourse for post-delivery issues.",
+        digitisation: "Warranty framework with standard terms based on work type and risk. Warranty tracking monitors warranty periods and claims automatically."
+      },
+      {
+        id: "sow-warranty-statement",
+        source: "Warranty Statement",
+        subcategory: "Performance",
+        category: "Performance",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Essential for warranty enforceability and quality standards. Without defined warranty statements, quality guarantees become unenforceable.",
+        digitisation: "Legal warranty library with enforceable terms by jurisdiction. Quality standards integration links warranties to measurable quality criteria."
+      },
+      {
+        id: "sow-data-protection",
+        source: "Customer/Staff Data",
+        subcategory: "Regulation",
+        category: "Regulation",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Mandatory for data protection compliance and privacy law adherence. Without data clauses, organizations face significant regulatory penalties.",
+        digitisation: "Compliance framework with current GDPR, CCPA, and other privacy regulations. Data classification tools identify and protect sensitive information automatically."
+      },
+      {
+        id: "sow-ai-statement",
+        source: "AI Statement",
+        subcategory: "Regulation",
+        category: "Regulation",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Critical for AI governance and regulatory compliance. Without AI clauses, organizations cannot control AI usage or comply with rapidly evolving AI regulations.",
+        digitisation: "AI governance framework with current regulatory requirements by jurisdiction. AI usage monitoring tracks and controls AI tool deployment across projects."
+      },
+      {
+        id: "sow-supply-chain",
+        source: "Employee Supply Chain",
+        subcategory: "Regulation",
+        category: "Regulation",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Essential for employment law compliance and supply chain transparency. Without supply chain clauses, employment classification risks and hidden vulnerabilities emerge.",
+        digitisation: "Supply chain mapping visualizes complete supplier networks and relationships. Compliance monitoring tracks employment classification across all suppliers."
+      },
+      {
+        id: "sow-exclusions",
+        source: "Exclusions",
+        subcategory: "Legal",
+        category: "Legal",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Important for liability limitation and risk allocation. Without exclusion clauses, liability boundaries remain unclear, potentially exposing organizations to unexpected risks.",
+        digitisation: "Risk-based exclusion library with standard exclusions for different risk profiles. Liability modeling calculates exposure with and without exclusions."
+      },
+      {
+        id: "sow-boilerplate",
+        source: "Boilerplate",
+        subcategory: "Legal",
+        category: "Legal",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Essential for legal completeness and contract enforceability. Without proper legal terms, contracts may be unenforceable or lack essential legal protections.",
+        digitisation: "Legal template library with current boilerplate by jurisdiction and work type. Automated legal updates incorporate new legal requirements and precedents."
+      },
+      {
+        id: "sow-msa-reference",
+        source: "MSA or PO Terms Reference",
+        subcategory: "Legal",
+        category: "Legal",
+        field_type: "Reference",
+        data_direction: "sow",
+        impact: "If there are no external references then the statement of work needs to be self contained as an entire legal document.",
+        digitisation: "Document linking system maintains references to master agreements and ensures version control. Automated updates notify when referenced documents change."
+      },
+      {
+        id: "sow-assumptions",
+        source: "Assumptions",
+        subcategory: "Commercial",
+        category: "Commercial",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Should be excluded - creates scope ambiguity and delivery disputes. Assumptions in SoWs create unclear scope boundaries and provide suppliers with excuses for non-delivery.",
+        digitisation: "Assumption elimination removes assumption fields from templates entirely. Requirement conversion transforms assumptions into concrete scope requirements."
+      },
+      {
+        id: "sow-change-request",
+        source: "Change Request",
+        subcategory: "Commercial",
+        category: "Commercial",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Critical for scope change management and cost control. Without change processes, scope modifications become uncontrolled, leading to cost overruns.",
+        digitisation: "Change control workflow automates approval processes for scope modifications. Impact assessment calculates cost and timeline effects of changes automatically."
+      },
+      {
+        id: "sow-project-brief",
+        source: "Project Brief/Description",
+        subcategory: "Commercial",
+        category: "Commercial",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Should be excluded - creates document confusion and scope ambiguity. Project briefs belong in separate documents; including them in SoWs creates confusion.",
+        digitisation: "Document separation keeps project briefs in separate systems from delivery requirements. Link management connects briefs to SoWs without inclusion."
+      },
+      {
+        id: "sow-max-days",
+        source: "Max Days and Furlough",
+        subcategory: "Commercial",
+        category: "Commercial",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Essential for cost control and seasonal planning. Without maximum day limits and holiday provisions, costs become uncontrolled during peak periods.",
+        digitisation: "Automated day calculations with maximum monthly limits and holiday adjustments. Calendar integration accounts for all relevant holidays and peak periods."
+      },
+      {
+        id: "sow-payment-terms-yn",
+        source: "Payment Terms",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Critical for financial planning and cash flow management. Without standardized payment terms, each contract requires individual negotiation.",
+        digitisation: "Standardized payment term templates ensure consistency across all contracts. Automated payment scheduling integrates with financial systems."
+      },
+      {
+        id: "sow-payment-terms-days",
+        source: "Payment Terms (Days)",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Days",
+        data_direction: "sow",
+        impact: "Critical for financial planning and cash flow management. Without standardized payment terms, each contract requires individual negotiation.",
+        digitisation: "Payment term validation ensures compliance with company policies. Automated invoice processing reduces manual intervention."
+      },
+      {
+        id: "sow-work-location",
+        source: "Work Location",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Essential for compliance and operational planning. Without specified work locations, security requirements, tax obligations, and regulatory compliance cannot be properly managed.",
+        digitisation: "Location compliance database ensures all work locations meet security and regulatory requirements. Automated compliance checking validates location-specific regulations."
+      },
+      {
+        id: "sow-notifications",
+        source: "Notifications",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Mandatory for legal compliance and communication reliability. Physical mailing addresses are old fashioned unless in countries that require physical notification.",
+        digitisation: "Digital notification system with automated delivery confirmation and read receipts. Multi-channel notification ensures reliable communication."
+      },
+      {
+        id: "sow-expenses-yn",
+        source: "Expenses",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Yes/No",
+        data_direction: "sow",
+        impact: "Important for cost control and budget management. Without expense frameworks, project costs can spiral beyond budget through uncontrolled expense claims.",
+        digitisation: "Expense framework with automated approval workflows and policy compliance checking. Integration with expense management systems for streamlined processing."
+      },
+      {
+        id: "sow-expenses-policy",
+        source: "Expenses Policy",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Critical for expense compliance and cost consistency. Without clear expense policies, expense claims become inconsistent and potentially excessive.",
+        digitisation: "Policy automation ensures all expense claims comply with current policies. Automated validation prevents non-compliant expenses."
+      },
+      {
+        id: "sow-jurisdiction",
+        source: "Contract Jurisdiction",
+        subcategory: "Hygiene",
+        category: "Hygiene",
+        field_type: "Statement",
+        data_direction: "sow",
+        impact: "Fundamental for legal enforceability and dispute resolution. Without clear governing law clauses, contract disputes cannot be resolved effectively.",
+        digitisation: "Jurisdiction validation ensures appropriate governing law selection based on work location and parties. Legal precedent database provides guidance on jurisdiction selection."
+      }
+    ];
 
     const elGrid = document.getElementById("grid");
     const elQ = document.getElementById("q");
@@ -2746,13 +3547,15 @@
       q: "",
       category: "All",
       view: "cards", // "cards" or "list"
-      direction: "all" // "all", "input", or "output"
+      direction: "all" // "all", "input", "transformer", "output", or "sow"
     };
 
     // Direction toggle handling
     const dirAllBtn = document.getElementById('dirAll');
     const dirInputsBtn = document.getElementById('dirInputs');
+    const dirTransformersBtn = document.getElementById('dirTransformers');
     const dirOutputsBtn = document.getElementById('dirOutputs');
+    const dirSoWBtn = document.getElementById('dirSoW');
 
     function setDirection(dir) {
       state.direction = dir;
@@ -2761,7 +3564,22 @@
       // Update button states
       dirAllBtn.classList.toggle('active', dir === 'all');
       dirInputsBtn.classList.toggle('active', dir === 'input');
+      dirTransformersBtn.classList.toggle('active', dir === 'transformer');
       dirOutputsBtn.classList.toggle('active', dir === 'output');
+      dirSoWBtn.classList.toggle('active', dir === 'sow');
+      
+      // Update list headers if in list view
+      const listHeader = document.getElementById('listHeader');
+      const sowListHeader = document.getElementById('sowListHeader');
+      if (state.view === 'list') {
+        if (dir === 'sow') {
+          listHeader.classList.remove('visible');
+          sowListHeader.classList.add('visible');
+        } else {
+          listHeader.classList.add('visible');
+          sowListHeader.classList.remove('visible');
+        }
+      }
       
       renderChips();
       render();
@@ -2770,7 +3588,9 @@
 
     dirAllBtn.addEventListener('click', () => setDirection('all'));
     dirInputsBtn.addEventListener('click', () => setDirection('input'));
+    dirTransformersBtn.addEventListener('click', () => setDirection('transformer'));
     dirOutputsBtn.addEventListener('click', () => setDirection('output'));
+    dirSoWBtn.addEventListener('click', () => setDirection('sow'));
 
     // Initialize direction from localStorage
     const savedDirection = localStorage.getItem('triangulate-direction');
@@ -2782,6 +3602,7 @@
     const viewCardsBtn = document.getElementById('viewCards');
     const viewListBtn = document.getElementById('viewList');
     const listHeader = document.getElementById('listHeader');
+    const sowListHeader = document.getElementById('sowListHeader');
 
     function setView(view) {
       state.view = view;
@@ -2789,11 +3610,19 @@
       if (view === 'cards') {
         elGrid.classList.remove('list-view');
         listHeader.classList.remove('visible');
+        sowListHeader.classList.remove('visible');
         viewCardsBtn.classList.add('active');
         viewListBtn.classList.remove('active');
       } else {
         elGrid.classList.add('list-view');
-        listHeader.classList.add('visible');
+        // Show appropriate header based on direction
+        if (state.direction === 'sow') {
+          listHeader.classList.remove('visible');
+          sowListHeader.classList.add('visible');
+        } else {
+          listHeader.classList.add('visible');
+          sowListHeader.classList.remove('visible');
+        }
         viewCardsBtn.classList.remove('active');
         viewListBtn.classList.add('active');
       }
@@ -2879,6 +3708,18 @@
 
     function matches(item, q) {
       if (!q) return true;
+      // Different fields for SoW items
+      if (item.data_direction === 'sow') {
+        const hay = [
+          item.source,
+          item.subcategory,
+          item.category,
+          item.field_type,
+          item.impact,
+          item.digitisation
+        ].map(norm).join(" | ");
+        return hay.includes(norm(q));
+      }
       const hay = [
         item.source,
         item.subcategory,
@@ -2899,8 +3740,12 @@
       let categories;
       if (state.direction === 'input') {
         categories = INPUT_CATEGORIES;
+      } else if (state.direction === 'transformer') {
+        categories = TRANSFORMER_CATEGORIES;
       } else if (state.direction === 'output') {
         categories = OUTPUT_CATEGORIES;
+      } else if (state.direction === 'sow') {
+        categories = SOW_CATEGORIES;
       } else {
         categories = ALL_CATEGORIES;
       }
@@ -2968,6 +3813,14 @@
         // Arrow pointing right (into the system)
         dirIndicator.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
         dirIndicator.title = "Input data source";
+      } else if (item.data_direction === 'sow') {
+        // Blue arrow pointing down for SoW
+        dirIndicator.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 13l7 7 7-7"/></svg>';
+        dirIndicator.title = "SoW Architecture field";
+      } else if (item.data_direction === 'transformer') {
+        // Purple circular arrows for transformers (representing AI processing)
+        dirIndicator.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"/></svg>';
+        dirIndicator.title = "Transformer / LLM";
       } else {
         // Arrow pointing left (out of the system)
         dirIndicator.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M19 12H5M11 19l-7-7 7-7"/></svg>';
@@ -2983,7 +3836,13 @@
       
       const sub = document.createElement("div");
       sub.className = "api-sub";
-      sub.textContent = item.subcategory + " • " + item.data_type;
+      
+      // Different subtitle for SoW items
+      if (item.data_direction === 'sow') {
+        sub.textContent = item.subcategory + " • " + item.field_type;
+      } else {
+        sub.textContent = item.subcategory + " • " + item.data_type;
+      }
 
       left.appendChild(titleRow);
       left.appendChild(sub);
@@ -2994,86 +3853,167 @@
       top.appendChild(left);
       top.appendChild(right);
 
-      const meta = document.createElement("div");
-      meta.className = "meta";
+      // Different content for SoW items vs regular items
+      if (item.data_direction === 'sow') {
+        c.classList.add('sow-card');
+        
+        // SoW card content - show impact description
+        const impactSection = document.createElement("div");
+        impactSection.className = "fields";
+        
+        const impactLabel = document.createElement("div");
+        impactLabel.className = "fields-label";
+        impactLabel.textContent = "SoW Data Schema";
+        impactSection.appendChild(impactLabel);
+        
+        const impactText = document.createElement("div");
+        impactText.style.color = "var(--text-secondary)";
+        impactText.style.fontSize = "12.5px";
+        impactText.style.lineHeight = "1.5";
+        impactText.textContent = item.impact;
+        impactSection.appendChild(impactText);
 
-      const t1 = document.createElement("span");
-      t1.className = "tag";
-      t1.innerHTML = "<strong>Coverage</strong> " + item.coverage;
+        // Data type element for list view
+        const dataTypeEl = document.createElement("div");
+        dataTypeEl.className = "sow-data-type";
+        dataTypeEl.innerHTML = "<strong style='margin-right:4px'>Type:</strong> " + item.field_type;
 
-      const t2 = document.createElement("span");
-      t2.className = "tag";
-      t2.innerHTML = "<strong>Mode</strong> " + item.delivery_mode;
+        // Description element for list view  
+        const descEl = document.createElement("div");
+        descEl.className = "sow-description";
+        descEl.textContent = item.impact;
+        descEl.title = item.impact; // Show full text on hover
 
-      meta.appendChild(t1);
-      meta.appendChild(t2);
-
-      const fields = document.createElement("div");
-      fields.className = "fields";
-      
-      const fieldsLabel = document.createElement("div");
-      fieldsLabel.className = "fields-label";
-      fieldsLabel.textContent = "Data fields";
-      fields.appendChild(fieldsLabel);
-
-      const maxFields = 8;
-      (item.example_fields || []).slice(0, maxFields).forEach(f => {
-        const k = document.createElement("code");
-        k.textContent = f;
-        fields.appendChild(k);
-      });
-      if ((item.example_fields || []).length > maxFields) {
-        const more = document.createElement("span");
-        more.style.marginLeft = "6px";
-        more.style.color = "var(--muted2)";
-        more.style.fontSize = "11px";
-        more.textContent = "+" + ((item.example_fields || []).length - maxFields) + " more";
-        fields.appendChild(more);
-      }
-
-      const foot = document.createElement("div");
-      foot.className = "foot";
-      const role = document.createElement("div");
-      role.className = "role";
-      role.textContent = item.benchmark_role;
-
-      const copyBtn = document.createElement("button");
-      copyBtn.className = "btn";
-      copyBtn.textContent = "Copy";
-      copyBtn.onclick = async (e) => {
-        e.stopPropagation();
-        const payload = {
-          source: item.source,
-          subcategory: item.subcategory,
-          category: item.category,
-          data_type: item.data_type,
-          coverage: item.coverage,
-          delivery_mode: item.delivery_mode,
-          example_fields: item.example_fields,
-          benchmark_role: item.benchmark_role
+        const foot = document.createElement("div");
+        foot.className = "foot";
+        
+        const fieldTypeLabel = document.createElement("div");
+        fieldTypeLabel.className = "role";
+        fieldTypeLabel.innerHTML = "<strong>Data Type:</strong> " + item.field_type;
+        
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "btn";
+        copyBtn.textContent = "Copy";
+        copyBtn.onclick = async (e) => {
+          e.stopPropagation();
+          const payload = {
+            field: item.source,
+            category: item.category,
+            field_type: item.field_type,
+            description: item.impact,
+            digitisation: item.digitisation
+          };
+          await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.textContent = "Copy", 1000);
         };
-        await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => copyBtn.textContent = "Copy", 1000);
-      };
 
-      foot.appendChild(role);
-      foot.appendChild(copyBtn);
+        foot.appendChild(fieldTypeLabel);
+        foot.appendChild(copyBtn);
 
-      c.appendChild(top);
-      c.appendChild(meta);
-      c.appendChild(fields);
-      c.appendChild(foot);
+        c.appendChild(top);
+        c.appendChild(dataTypeEl);
+        c.appendChild(descEl);
+        c.appendChild(impactSection);
+        c.appendChild(foot);
+      } else {
+        // Regular card content
+        const meta = document.createElement("div");
+        meta.className = "meta";
+
+        const t1 = document.createElement("span");
+        t1.className = "tag";
+        t1.innerHTML = "<strong>Coverage</strong> " + item.coverage;
+
+        const t2 = document.createElement("span");
+        t2.className = "tag";
+        t2.innerHTML = "<strong>Mode</strong> " + item.delivery_mode;
+
+        meta.appendChild(t1);
+        meta.appendChild(t2);
+
+        const fields = document.createElement("div");
+        fields.className = "fields";
+        
+        const fieldsLabel = document.createElement("div");
+        fieldsLabel.className = "fields-label";
+        fieldsLabel.textContent = "Data fields";
+        fields.appendChild(fieldsLabel);
+
+        const maxFields = 8;
+        (item.example_fields || []).slice(0, maxFields).forEach(f => {
+          const k = document.createElement("code");
+          k.textContent = f;
+          fields.appendChild(k);
+        });
+        if ((item.example_fields || []).length > maxFields) {
+          const more = document.createElement("span");
+          more.style.marginLeft = "6px";
+          more.style.color = "var(--muted2)";
+          more.style.fontSize = "11px";
+          more.textContent = "+" + ((item.example_fields || []).length - maxFields) + " more";
+          fields.appendChild(more);
+        }
+
+        const foot = document.createElement("div");
+        foot.className = "foot";
+        const role = document.createElement("div");
+        role.className = "role";
+        role.textContent = item.benchmark_role;
+
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "btn";
+        copyBtn.textContent = "Copy";
+        copyBtn.onclick = async (e) => {
+          e.stopPropagation();
+          const payload = {
+            source: item.source,
+            subcategory: item.subcategory,
+            category: item.category,
+            data_type: item.data_type,
+            coverage: item.coverage,
+            delivery_mode: item.delivery_mode,
+            example_fields: item.example_fields,
+            benchmark_role: item.benchmark_role
+          };
+          await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => copyBtn.textContent = "Copy", 1000);
+        };
+
+        foot.appendChild(role);
+        foot.appendChild(copyBtn);
+
+        c.appendChild(top);
+        c.appendChild(meta);
+        c.appendChild(fields);
+        c.appendChild(foot);
+      }
 
       return c;
     }
 
     function render() {
-      const items = DATA
+      // Select data source based on direction
+      let dataSource;
+      if (state.direction === 'sow') {
+        dataSource = SOW_DATA;
+      } else if (state.direction === 'transformer') {
+        dataSource = TRANSFORMER_DATA;
+      } else if (state.direction === 'all') {
+        // Combine DATA and TRANSFORMER_DATA for "All" view
+        dataSource = [...DATA, ...TRANSFORMER_DATA];
+      } else {
+        dataSource = DATA;
+      }
+      
+      const items = dataSource
         .filter(i => {
-          // Filter by direction
+          // Filter by direction (only needed for DATA, not SOW_DATA or TRANSFORMER_DATA)
           if (state.direction === 'input') return i.data_direction === 'input';
           if (state.direction === 'output') return i.data_direction === 'output';
+          if (state.direction === 'sow') return true; // All SOW_DATA items are sow
+          if (state.direction === 'transformer') return true; // All TRANSFORMER_DATA items are transformer
           return true;
         })
         .filter(i => state.category === "All" ? true : i.category === state.category)
@@ -3085,7 +4025,9 @@
       // Update count text based on direction
       let label = "data source";
       if (state.direction === 'input') label = "input source";
+      if (state.direction === 'transformer') label = "transformer";
       if (state.direction === 'output') label = "output system";
+      if (state.direction === 'sow') label = "SoW field";
       elCount.textContent = items.length + " " + label + (items.length !== 1 ? "s" : "");
     }
 
@@ -3104,10 +4046,6 @@
       a.click();
       document.body.removeChild(a);
     }
-
-    document.getElementById("downloadJsonBtn").addEventListener("click", () => {
-      download("triangulate-data-sources.json", JSON.stringify(DATA, null, 2));
-    });
 
     document.getElementById("copyJsonBtn").addEventListener("click", async () => {
       await navigator.clipboard.writeText(JSON.stringify(DATA, null, 2));
